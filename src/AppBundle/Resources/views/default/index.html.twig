@@ -1,0 +1,299 @@
+{% extends 'AppBundle:default:layout.html.twig' %}
+
+{% block body %}
+    {% include 'AppBundle:default:slider.html.twig' %}
+    <!-- Информация на главной -->
+    <section class="mainInfo clearfix">
+        <div class="mainInfoBlock clearfix">
+            <h2>Уважаемые посетители!</h2>
+            <p>
+                Мы рады поприветствовать вас на официальном стайте компании «Дельта-Х». Наше предприятие производит эксклюзивный кисловодский фарфор ручной работы. Уже более 20 лет мы создаем для вас уникальную продукцию: сервизы и памятные сувениры, вазы, жанровая и анималистическая скульптура.
+            </p>
+            <p>
+                Наша компания принимает активное участие в художественных выставках в России и за рубежом, открывает новые фирменные и партнерские магазины. Мы развиваемся и внедряем новые технологии в создании нашей продукции. На нашем сайте Вы найдете полный каталог продукции, который постоянно обновляется, и сможете заказать уникальные фарфоровые произведения, не выходя из дома.
+            </p>
+            <div class="linksBlock">
+                <div class="goodsCatalogLink">
+                    <a href="#">
+                        <span>Каталог продукции</span>
+                    </a>
+                </div>
+                <div class="honorsLink">
+                    <a href="#">
+                        <span>Награды</span>
+                    </a>
+                </div>
+                <div class="contactsLink">
+                    <a href="#">
+                        <span>Контакты</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Последние новинки -->
+    <section class="lastItems clearfix">
+        <div class="lastItemsBlock clearfix">
+            <span class="titleIcon"><img src="{{ asset('bundles/app/images/lastItems_icon.svg') }}" alt="" /></span>
+            <h2 class="mainTitle">Последние новинки</h2>
+            <div class="lastItemTiles">
+                <div class="lastItemTilesHorizBlock">
+                    <div class="lastItemTile white">
+                        <img src="{{ asset('bundles/app/images/lastItem_1.png') }}" alt="" />
+                        <div class="lastItemTileBody">
+                            <span class="lastItemTileTitle">Весеннее настроение</span>
+                            <p>
+                                Дорогие любители фарфора!<br />
+                                <br />
+                                ООО «Дельта-Х» — производитель кисловодского фарфора высшего качества в очередной раз радует вас новыми изделиями! Этой весной мы приготовили для вас более 70 новинок в нашем каталоге!
+                                х изделий.
+                            </p>
+                            <a href="#">узнать подробнее...</a>
+                        </div>
+                    </div>
+                    <div class="lastItemTile blue">
+                        <div class="lastItemTileBody">
+                            <span class="lastItemTileTitle">Чайный сервиз</span>
+                            <p>
+                                Наша новинка!<br />
+                                Рады представить вам новый чайный сервиз, разработанный нами в честь праздника годовщины возвращения Крыма в Россию.
+                            </p>
+                            <a href="#">узнать подробнее...</a>
+                        </div>
+                        <img src="{{ asset('bundles/app/images/lastItem_3.png') }}" alt="" />
+                    </div>
+                </div>
+                <div class="lastItemTilesVerticalBlock">
+                    <div class="lastItemTileBody">
+                        <span class="lastItemTileTitle">Индивидуальный заказ</span>
+                        <p>
+                            Дорогие любители фарфора!<br />
+                            Рады представить вам работу выполненную по индивидуальному заказы - подарочный набор часы с вазами.
+                        </p>
+                        <a href="#">узнать подробнее...</a>
+                    </div>
+                    <img src="{{ asset('bundles/app/images/lastItem_2.png') }}" alt="" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Оплата и доставка -->
+    <section class="paymentDelivery clearfix">
+        <div class="paymentDeliveryBlock clearfix">
+            <span class="titleIcon"><img src="{{ asset('bundles/app/images/paymentDelivery_icon.svg') }}" alt="" ></span>
+            <h2 class="mainTitle">СПОСОБЫ ОПЛАТЫ И ДОСТАВКА</h2>
+            <div class="paymentDeliveryInfo">
+                <div class="paymentDeliveryList">
+                    <div>
+                    <span>
+                        <img src="{{ asset('bundles/app/images/method_pay_img.svg') }}" alt="" />
+                    </span>
+                        <p>Удобные способы<br />оплаты</p>
+                    </div>
+                    <div>
+                    <span>
+                        <img src="{{ asset('bundles/app/images/clients_img.svg') }}" alt="" />
+                    </span>
+                        <p>Индивидуальный подход к<br />каждому клиенту</p>
+                    </div>
+                    <div>
+                    <span>
+                        <img src="{{ asset('bundles/app/images/delivery_img.svg') }}" alt="" />
+                    </span>
+                        <p>Надежная служба<br />доставки</p>
+                    </div>
+                </div>
+                <div class="paymentDeliveryText">
+                    <p>
+                        Мы принимаем различные формы оплаты по договоренности с клиентами.
+                    </p>
+                    <p>
+                        Доставка продукции осуществляется по России транспортными компаниями:
+                    </p>
+                    <p>
+                        <span class="color">ЖелДорЭкспедиция</span> - группа компаний успешно работает на рынке автомобильных и железнодорожных грузовых перевозок. Желдорэкспедиция в кратчайшие сроки осуществляет перевозку грузов по России. Для удобства перевозки грузов наши филиалы расположены в 101 городе, а также возможна доставка груза от представительств ГК ЖДЭ в 2427 городов России.
+                    </p>
+                    <p>
+                        Также каждую неделю предприятие организует транспортировку продукции в г. Москва - по предварительной договоренности с покупателями.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Это интересно -->
+    <section class="interesting clearfix">
+        <div class="interestingBlock clearfix">
+            <span class="titleIcon"><img src="{{ asset('bundles/app/images/interesting_icon.svg') }}" alt="" /></span>
+            <h2 class="mainTitle">Это интересно</h2>
+            <div class="interestingList">
+                <div class="interestingItem">
+                    <span class="interestingItemTitle">Японский фарфор</span>
+                    <p>
+                        В конце XVI в. на Кюсю близ Ариты были найдены месторождения каолина и полевого шпата. На этой базе начало разворачиваться фарфоровое производство, основывающиеся на опыте китайских и корейских мастеров.
+                    </p>
+                    <p>
+                        Со второй половины XVII в. начался расцвет японской керамики, обладавшей декоративными качествами, свойственными всему и-ву периода изоляции страны. Начало этого расцвета связывают с творчеством Нономура Нинсэя. Он родился в провинции Тамба. Нинсэй традиционные формы народной керамики своей провинции с росписью эмалевыми красками. Он создал новый тип керамики, чисто японский по духу и образности (нинсэй-яки), использовавшийся для чайной церемонии.
+                    </p>
+                    <a href="#">Узнать подробнее</a>
+                </div>
+                <div class="interestingItem">
+                    <span class="interestingItemTitle">Японский фарфор</span>
+                    <p>
+                        В конце XVI в. на Кюсю близ Ариты были найдены месторождения каолина и полевого шпата. На этой базе начало разворачиваться фарфоровое производство, основывающиеся на опыте китайских и корейских мастеров.
+                    </p>
+                    <p>
+                        Со второй половины XVII в. начался расцвет японской керамики, обладавшей декоративными качествами, свойственными всему и-ву периода изоляции страны. Начало этого расцвета связывают с творчеством Нономура Нинсэя. Он родился в провинции Тамба. Нинсэй традиционные формы народной керамики своей провинции с росписью эмалевыми красками. Он создал новый тип керамики, чисто японский по духу и образности (нинсэй-яки), использовавшийся для чайной церемонии.
+                    </p>
+                    <a href="#">Узнать подробнее</a>
+                </div>
+                <div class="interestingItem">
+                    <span class="interestingItemTitle">Японский фарфор</span>
+                    <p>
+                        В конце XVI в. на Кюсю близ Ариты были найдены месторождения каолина и полевого шпата. На этой базе начало разворачиваться фарфоровое производство, основывающиеся на опыте китайских и корейских мастеров.
+                    </p>
+                    <p>
+                        Со второй половины XVII в. начался расцвет японской керамики, обладавшей декоративными качествами, свойственными всему и-ву периода изоляции страны. Начало этого расцвета связывают с творчеством Нономура Нинсэя. Он родился в провинции Тамба. Нинсэй традиционные формы народной керамики своей провинции с росписью эмалевыми красками. Он создал новый тип керамики, чисто японский по духу и образности (нинсэй-яки), использовавшийся для чайной церемонии.
+                    </p>
+                    <a href="#">Узнать подробнее</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Контакты -->
+    <section class="contacts clearfix">
+        <div class="contactsBlock clearfix">
+            <span class="titleIcon"><img src="{{ asset('bundles/app/images/contactsBlock_icon.svg') }}" alt="" /></span>
+            <h2 class="mainTitle">Контакты</h2>
+            <div class="contactInfo">
+                <span class="big bold">ООО "Дельта-Х"</span><br />
+                <span class="bold">производитель фарфора ручной работы</span><br /><br />
+                <p class="address">
+                    Адрес:<br />
+                    ул. Гайдара, 32<br />
+                    Кисловодск<br />
+                    Ставропольский край<br />
+                    357700<br />
+                    Российская Федерация
+                </p>
+                <p class="contactsData">
+                    Телефон: (87937) 6-79-36, 6-65-36<br />
+                    Факс: 	(87937) 6-79-36<br />
+                    <a href="http://www.delta-x.ru">http://www.delta-x.ru</a><br /><br />
+                    Информация: График работы:<br />
+                    пн. - пт. с 9:00 до 17:00; сб. - с 9:00 до 16:00 (без перерыва)
+                </p>
+            </div>
+            <div class="contactsForm">
+                <a class="vk" href="https://vk.com" target="_blank" rel="nofollow"><img src="{{ asset('bundles/app/images/vk_icon.svg') }}" alt="" /><span>Наш паблик</span></a>
+                <div class="formFeedback">
+                    <form action="/">
+                        <span class="titleForm">Вы можете написать нам:</span>
+                        <div class="inputBlock">
+                            <label>Введите Ваше имя:</label>
+                            <input type="text" name="name" />
+                        </div>
+                        <div class="inputBlock">
+                            <label>E-mail адрес:</label>
+                            <input type="text" name="email" />
+                        </div>
+                        <div class="inputBlock">
+                            <label>Тема сообщения:</label>
+                            <input type="text" name="theme" />
+                        </div>
+                        <div class="inputBlock textareaBlock">
+                            <label>Текст Вашего сообщения:</label>
+                            <textarea name="message"></textarea>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" />
+                                <span>Отправить копию этого сообщения на Ваш адрес</span>
+                            </label>
+                        </div>
+                        <input type="submit" value="Отправить" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Карта -->
+    <section class="map clearfix">
+        <div class="mapBlock">
+            <script src='https://maps.googleapis.com/maps/api/js?key=&sensor=false&extension=.js'></script>
+            <script>
+                google.maps.event.addDomListener(window, 'load', init);
+                var map;
+                function init() {
+                    var mapOptions = {
+                        center: new google.maps.LatLng(43.911269,42.737364),
+                        zoom: 17,
+                        zoomControl: true,
+                        zoomControlOptions: {
+                            style: google.maps.ZoomControlStyle.DEFAULT,
+                        },
+                        disableDoubleClickZoom: true,
+                        mapTypeControl: true,
+                        mapTypeControlOptions: {
+                            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                        },
+                        scaleControl: true,
+                        scrollwheel: false,
+                        panControl: true,
+                        streetViewControl: true,
+                        draggable : true,
+                        overviewMapControl: true,
+                        overviewMapControlOptions: {
+                            opened: false,
+                        },
+                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                        styles: [{"featureType":"all","elementType":"all","stylers":[{"saturation":-100},{"gamma":0.5}]}],
+                    }
+                    var mapElement = document.getElementById('map');
+                    var map = new google.maps.Map(mapElement, mapOptions);
+                    var locations = [
+                        ['ул. Гайдара, 32', 'ул. Гайдара, 32', 'undefined', 'undefined', 'undefined', 43.9109332, 42.7376888, '{{ asset('bundles/app/images/thumb.png') }}']
+                    ];
+                    for (i = 0; i < locations.length; i++) {
+                        if (locations[i][1] =='undefined'){ description ='';} else { description = locations[i][1];}
+                        if (locations[i][2] =='undefined'){ telephone ='';} else { telephone = locations[i][2];}
+                        if (locations[i][3] =='undefined'){ email ='';} else { email = locations[i][3];}
+                        if (locations[i][4] =='undefined'){ web ='';} else { web = locations[i][4];}
+                        if (locations[i][7] =='undefined'){ markericon ='';} else { markericon = locations[i][7];}
+                        marker = new google.maps.Marker({
+                            icon: markericon,
+                            position: new google.maps.LatLng(locations[i][5], locations[i][6]),
+                            map: map,
+                            title: locations[i][0],
+                            desc: description,
+                            tel: telephone,
+                            email: email,
+                            web: web
+                        });
+                        link = '';     }
+
+                }
+            </script>
+            <style>
+                #map {
+                    height:488px;
+                    width:100%px;
+                }
+                .gm-style-iw * {
+                    display: block;
+                    width: 100%;
+                }
+                .gm-style-iw h4, .gm-style-iw p {
+                    margin: 0;
+                    padding: 0;
+                }
+                .gm-style-iw a {
+                    color: #4272db;
+                }
+            </style>
+
+            <div id='map'></div>
+        </div>
+    </section>
+
+    <div class="pusher"></div>
+{% endblock %}
