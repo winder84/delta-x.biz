@@ -27,6 +27,12 @@ class AppKernel extends Kernel
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Sonata\UserBundle\SonataUserBundle(),
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new Sonata\ClassificationBundle\SonataClassificationBundle(),
+            new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),
+            new Sonata\MediaBundle\SonataMediaBundle(),
+            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+            new Sonata\IntlBundle\SonataIntlBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
 
         ];
 

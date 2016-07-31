@@ -1,14 +1,15 @@
 <section class="mainBanner clearfix">
     <div class="bannerBlock">
         <div class="flexslider clearfix">
-            <ul class="slides">
-                <li style="background: url({{ asset('bundles/app/images/slide_1.png') }});">
-                    <p class="flex-caption">Создание парадных сервизов для торжественных приемов</p>
-                </li>
-                <li style="background: url({{ asset('bundles/app/images/slide_1.png') }});">
-                    <p class="flex-caption">Создание парадных сервизов для торжественных приемов</p>
-                </li>
-            </ul>
+            {% if slides is defined %}
+                <ul class="slides">
+                {% for slide in slides %}
+                    <li style="background: url({% path slide.media, 'reference' %});">
+                        <p class="flex-caption">{{ slide.mainSliderText }}</p>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
         </div>
     </div>
 </section>

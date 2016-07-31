@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: @AppBundle/Resources/config/services.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -65,6 +66,11 @@ doctrine:
                     ApplicationSonataUserBundle: ~
                     SonataUserBundle: ~
                     FOSUserBundle: ~
+                    ApplicationSonataClassificationBundle: ~
+                    SonataClassificationBundle: ~
+                    ApplicationSonataMediaBundle: ~
+                    SonataMediaBundle: ~
+                    AppBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -101,4 +107,81 @@ fos_user:
 
     service:
         user_manager: sonata.user.orm.user_manager
+
+sonata_media:
+    # if you don't use default namespace configuration
+    #class:
+    #    media:        MyVendor\MediaBundle\Entity\Media
+    #    gallery:      MyVendor\MediaBundle\Entity\Gallery
+    #    gallery_item: MyVendor\MediaBundle\Entity\GalleryItem
+    db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr it is mandatory to choose one here
+    default_context: default # you need to set a context
+    contexts:
+        default:  # the default context is mandatory
+            providers:
+                - sonata.media.provider.dailymotion
+                - sonata.media.provider.youtube
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+            formats:
+                small: { width: 100 , quality: 70}
+                big:   { width: 500 , quality: 70}
+        engine:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                preview:   { width: 100, quality: 100}
+                small:     { width: 200, quality: 100}
+                large:     { width: 600, quality: 100}
+
+        sonata_collection:
+            providers:
+              - sonata.media.provider.image
+
+            formats:
+                preview: { width: 100, quality: 100}
+                wide:    { width: 820, quality: 100}
+
+        sonata_category:
+            providers:
+              - sonata.media.provider.image
+
+            formats:
+                preview: { width: 100, quality: 100}
+                wide:    { width: 820, quality: 100}
+
+    cdn:
+        server:
+            path: /uploads/media # http://media.sonata-project.org/
+
+    filesystem:
+        local:
+            directory:  "%kernel.root_dir%/../web/uploads/media"
+            create:     false
+    providers:
+        image:
+            resizer: sonata.media.resizer.square
+
+sonata_classification:
+    class:
+        tag:          Application\Sonata\ClassificationBundle\Entity\Tag
+        category:     Application\Sonata\ClassificationBundle\Entity\Category
+        collection:   Application\Sonata\ClassificationBundle\Entity\Collection
+
+    admin:
+        tag:
+            class:        Sonata\ClassificationBundle\Admin\TagAdmin
+            controller:   SonataAdminBundle:CRUD
+            translation:  SonataClassificationBundle
+        category:
+            class:        Sonata\ClassificationBundle\Admin\CategoryAdmin
+            controller:   SonataAdminBundle:CRUD
+            translation:  SonataClassificationBundle
+        collection:
+            class:        Sonata\ClassificationBundle\Admin\CollectionAdmin
+            controller:   SonataAdminBundle:CRUD
+            translation:  SonataClassificationBundle
+
+sonata_admin:
+    title:      Панель управления
 
