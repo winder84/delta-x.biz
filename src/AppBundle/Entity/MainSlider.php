@@ -30,6 +30,13 @@ class MainSlider
     private $mainSliderText;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="mainSliderUrl", type="string", nullable=true)
+     */
+    private $mainSliderUrl;
+
+    /**
      * @var \Application\Sonata\MediaBundle\Entity\Media
      * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
      */
@@ -83,5 +90,29 @@ class MainSlider
     public function getMainSliderText()
     {
         return $this->mainSliderText;
+    }
+
+    /**
+     * Set mainSliderUrl
+     *
+     * @param string $mainSliderUrl
+     *
+     * @return MainSlider
+     */
+    public function setMainSliderUrl($mainSliderUrl)
+    {
+        $this->mainSliderUrl = $mainSliderUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get mainSliderUrl
+     *
+     * @return string
+     */
+    public function getMainSliderUrl()
+    {
+        return $this->mainSliderUrl;
     }
 }

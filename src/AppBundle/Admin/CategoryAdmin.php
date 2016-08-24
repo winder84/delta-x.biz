@@ -8,7 +8,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class MainSliderAdmin extends AbstractAdmin
+class CategoryAdmin extends AbstractAdmin
 {
     /**
      * @param DatagridMapper $datagridMapper
@@ -17,8 +17,7 @@ class MainSliderAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('id')
-            ->add('mainSliderText')
-            ->add('mainSliderUrl')
+            ->add('title')
         ;
     }
 
@@ -28,12 +27,7 @@ class MainSliderAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
-            ->add('mainSliderText', null, array('label' => 'Текст слайдера:'))
-            ->add('media', 'sonata_media_type', array(
-                'provider' => 'sonata.media.provider.image',
-                'template' => 'AppBundle:default:image.preview.html.twig'
-            ))
+            ->add('title')
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -50,14 +44,7 @@ class MainSliderAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('media', 'sonata_media_type', array(
-                'provider' => 'sonata.media.provider.image',
-                'context'  => 'engine',
-                'required' => false,
-                'label' => 'Изображение для слайдера:'
-            ))
-            ->add('mainSliderText', null, array('label' => 'Текст слайдера:'))
-            ->add('mainSliderUrl', null, array('label' => 'Ссылка со слайдера:'))
+            ->add('title')
         ;
     }
 
@@ -68,8 +55,7 @@ class MainSliderAdmin extends AbstractAdmin
     {
         $showMapper
             ->add('id')
-            ->add('mainSliderText')
-            ->add('mainSliderUrl')
+            ->add('title')
         ;
     }
 }

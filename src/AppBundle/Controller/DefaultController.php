@@ -70,4 +70,19 @@ class DefaultController extends Controller
             'slides' => $slides,
         ]);
     }
+
+    /**
+     * @Route("/catalog/item/{id}", name="catalog_item")
+     */
+    public function catalogItemAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $slides = $em
+            ->getRepository('AppBundle:MainSlider')
+            ->findAll();
+        return $this->render('AppBundle:default:catalog.item.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
+            'slides' => $slides,
+        ]);
+    }
 }

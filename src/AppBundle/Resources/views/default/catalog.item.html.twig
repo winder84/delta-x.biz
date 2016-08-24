@@ -1,0 +1,200 @@
+{% extends 'AppBundle:default:layout.html.twig' %}
+
+{% block body %}
+    {% include 'AppBundle:default:slider.html.twig' %}
+    <div class="innerPageBlock clearfix">
+        <div class="breadCrumbs clearfix">
+            <div class="breadCrumbsBlock clearfixk">
+                <ul>
+                    <li class="home"><a href="index.html"></a></li>
+                    <li><a href="catalog.html">каталог продукции</a></li>
+                    <li><a href="catalog.html">авторские изделия</a></li>
+                    <li><a href="catalog.html">наборы-сервизы</a></li>
+                    <li><span>набор “Мечта”</span></li>
+                </ul>
+            </div>
+        </div>
+        <section class="baseContent clearfix">
+            <div class="baseContentBlock clearfix">
+                <div class="searchBlock catalogPage clearfix">
+                    <div class="pageNameBlock">
+                        Категория
+                    </div>
+                    <div class="catalogMenu">
+                        <span class="currentCatalog collapsed">Авторские изделия</span>
+                        <ul>
+                            <li><a href="#">Серийные изделия</a></li>
+                            <li><a href="#">Индивидуальные заказы</a></li>
+                        </ul>
+                    </div>
+                    <div class="searchContainer">
+                        <form action="/">
+                            <input class="searchBtn" type="submit" value="">
+                            <input class="searchInput" type="text" placeholder="поиск...">
+                        </form>
+                    </div>
+                </div>
+                <div class="contentBlock">
+                    <div class="catalogBlock">
+                        <div class="catalogFilter">
+                            <ul>
+                                <li><a href="#">Самовары</a></li>
+                                <li><a href="#">Вазы</a></li>
+                                <li><a href="#">Светильники</a></li>
+                                <li><a href="#">Шахматы</a></li>
+                                <li><a href="#">Подсвечники-канделябры</a></li>
+                                <li><a href="#">Часы</a></li>
+                                <li class="act"><a href="#">Наборы-сервизы</a></li>
+                                <li><a href="#">Фруктовницы</a></li>
+                                <li><a href="#">Лепнина-Скульптура</a></li>
+                                <li><a href="#">Продукция провославной тематики</a></li>
+                            </ul>
+                        </div>
+                        <div class="catalogListBlock">
+                            <div class="paginator">
+                                <ul>
+                                    <li class="leftArrow"><a href="#"></a></li>
+                                    <li class="act"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">11</a></li>
+                                    <li class="rightArrow"><a href="#"></a></li>
+                                </ul>
+                            </div>
+                            <div class="catalogDescrItem">
+                                <a href="#" class="backToCatalog">Назад к каталогу</a>
+                                <script>
+                                    $(function() {
+                                        $('#catalogDescrThumbSlider').flexslider({
+                                            animation: "slide",
+                                            controlNav: false,
+                                            itemWidth: 139.5,
+                                            itemMargin: 8,
+                                            asNavFor: '#catalogDescrSlider'
+                                        });
+                                        $('#catalogDescrSlider').flexslider({
+                                            animation: "slide",
+                                            controlNav: false,
+                                            directionNav: false,
+                                            sync: "#catalogDescrThumbSlider"
+                                        });
+                                    });
+                                </script>
+                                <div class="catalogDescrSlides">
+                                    <div id="catalogDescrSlider" class="catalogDescrSlider">
+                                        <ul class="slides">
+                                            <li>
+                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
+                                            </li>
+                                            <li>
+                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
+                                            </li>
+                                            <li>
+                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
+                                            </li>
+                                            <li>
+                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
+                                            </li>
+                                            <li>
+                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
+                                            </li>
+                                            <li>
+                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
+                                            </li>
+                                            <li>
+                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div id="catalogDescrThumbSlider" class="catalogDescrThumbSlider">
+                                        <ul class="slides">
+                                            <li>
+                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
+                                            </li>
+                                            <li>
+                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
+                                            </li>
+                                            <li>
+                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
+                                            </li>
+                                            <li>
+                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
+                                            </li>
+                                            <li>
+                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
+                                            </li>
+                                            <li>
+                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
+                                            </li>
+                                            <li>
+                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="catalogDescrBody">
+                                    <span class="catalogDescrTitle">НАБОР КОФЕЙНЫЙ <span class="bold">“МЕЧТА”</span></span>
+                                    <p>
+                                        Небольное описание сервиза, материалов и прочего. Немного текста бля большей конверсии продукции. Многие думают, что Lorem Ipsum - взятый с потолка псевдо-латинский набор слов, но это не совсем так. Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur", и занялся его поисками в классической латинской литературе. В результате он нашёл неоспоримый первоисточник Lorem Ipsum в разделах 1.10.32 и 1.10.33 книги "de Finibus Bonorum et Malorum" ("О пределах добра и зла"), написанной Цицероном в 45 году н.э. Этот трактат по теории этики был очень популярен в эпоху Возрождения. Первая строка Lorem Ipsum, "Lorem ipsum dolor sit amet..", происходит от одной из строк в разделе 1.10.32
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="paginator">
+                                <ul>
+                                    <li class="leftArrow"><a href="#"></a></li>
+                                    <li class="act"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">11</a></li>
+                                    <li class="rightArrow"><a href="#"></a></li>
+                                </ul>
+                            </div>
+                            <div class="maybeBlock">
+                                <span class="titleIcon">
+                                    <img src="{{ asset('bundles/app/images/catalog_title_icon.png') }}" alt="/" />
+                                </span>
+                                <h2 class="mainTitle">ВОЗМОЖНО ВАМ ТАК ЖЕ ПОНРАВИТСЯ</h2>
+                                <div class="catalogListAdd">
+                                    <div class="catalogItem">
+                                        <a href="#" class="catalogItemBody">
+                                        <span class="catalogItemImage">
+                                            <img src="{{ asset('bundles/app/images/catalog_image.png') }}" alt="/" >
+                                        </span>
+                                            <span class="catalogItemTitle">НАБОР КОФЕЙНЫЙ <span class="bold">“МЕЧТА”</span></span>
+                                            <span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста бля большей конверсии продукции.</span>
+                                        </a>
+                                        <a href="#" class="catalogItemLink bold">Подробнее...</a>
+                                    </div>
+                                    <div class="catalogItem">
+                                        <a href="#" class="catalogItemBody">
+                                        <span class="catalogItemImage">
+                                            <img src="{{ asset('bundles/app/images/catalog_image.png') }}" alt="/" >
+                                        </span>
+                                            <span class="catalogItemTitle">НАБОР КОФЕЙНЫЙ <span class="bold">“МЕЧТА”</span></span>
+                                            <span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста бля большей конверсии продукции.</span>
+                                        </a>
+                                        <a href="#" class="catalogItemLink bold">Подробнее...</a>
+                                    </div>
+                                    <div class="catalogItem">
+                                        <a href="#" class="catalogItemBody">
+                                        <span class="catalogItemImage">
+                                            <img src="{{ asset('bundles/app/images/catalog_image.png') }}" alt="/" >
+                                        </span>
+                                            <span class="catalogItemTitle">НАБОР КОФЕЙНЫЙ <span class="bold">“МЕЧТА”</span></span>
+                                            <span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста бля большей конверсии продукции.</span>
+                                        </a>
+                                        <a href="#" class="catalogItemLink bold">Подробнее...</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="pusher"></div>
+{% endblock %}
