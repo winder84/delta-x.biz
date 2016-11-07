@@ -10,6 +10,8 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class ProductAdmin extends AbstractAdmin
 {
+    protected $context = 'default';
+
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -33,6 +35,7 @@ class ProductAdmin extends AbstractAdmin
             ->add('alias')
             ->add('text')
             ->add('category')
+            ->add('productLink')
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -48,10 +51,27 @@ class ProductAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $link_parameters = array();
         $formMapper
             ->add('title')
             ->add('text')
             ->add('category')
+            ->add('productLink')
+            ->add('productMedia', 'sonata_type_collection', array(
+                'cascade_validation' => true,
+                'type_options' => array('delete' => false),
+                'required' => false,
+            ), array(
+                'edit' => 'inline',
+                'required' => false,
+                'inline' => 'table',
+                'sortable' => 'position',
+                'targetEntity' => 'AppBundle\Entity\ProductHasMedia',
+                'link_parameters' => array(
+                    'context' => $this->context,
+                ),
+                'admin_code' => 'app.admin.product_has_media'
+            ))
         ;
     }
 
@@ -67,11 +87,6 @@ class ProductAdmin extends AbstractAdmin
             ->add('text')
             ->add('category')
         ;
-    }
-
-    public function prePersist($product)
-    {
-        $product->setAlias($this->TransUrl($product->getTitle()));
     }
 
     private function TransUrl($str)
@@ -171,5 +186,15 @@ class ProductAdmin extends AbstractAdmin
             "\\"=>""
         );
         return strtr($str,$tr);
+    }
+
+    public function prePersist($product)
+    {
+        $product->setAlias($this->TransUrl($product->getTitle()));
+        $product->setProductMedia($product->getProductMedia());
+    }
+    public function preUpdate($product)
+    {
+        $product->setProductMedia($product->getProductMedia());
     }
 }

@@ -3,6 +3,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Application\Sonata\MediaBundle\Entity\Gallery;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Product
@@ -48,11 +51,31 @@ class Product
      **/
     private $category;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProductLink", inversedBy="products", cascade={"persist"})
+     * @ORM\JoinColumn(name="productLinkId", referencedColumnName="id", onDelete="SET NULL")
+     **/
+    private $productLink;
+
+    /**
+     * @Assert\NotBlank()
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProductHasMedia", mappedBy="product",cascade={"persist","remove"})
+     * @ORM\JoinTable(name="product_galleries")
+     */
+    private $productMedia;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->productMedia = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -153,5 +176,73 @@ class Product
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set productLink
+     *
+     * @param \AppBundle\Entity\ProductLink $productLink
+     *
+     * @return Product
+     */
+    public function setProductLink(\AppBundle\Entity\ProductLink $productLink = null)
+    {
+        $this->productLink = $productLink;
+
+        return $this;
+    }
+
+    /**
+     * Get productLink
+     *
+     * @return \AppBundle\Entity\ProductLink
+     */
+    public function getProductLink()
+    {
+        return $this->productLink;
+    }
+    /**
+     * Add productMedia
+     *
+     * @param \AppBundle\Entity\ProductHasMedia $productMedia
+     * @return Product
+     */
+    public function addProductMedia(\AppBundle\Entity\ProductHasMedia $productMedia)
+    {
+        $this->productMedia[] = $productMedia;
+        return $this;
+    }
+    /**
+     * Remove productMedia
+     *
+     * @param \AppBundle\Entity\ProductHasMedia $productMedia
+     */
+    public function removeProductMedia(\AppBundle\Entity\ProductHasMedia $productMedia)
+    {
+        $this->productMedia->removeElement($productMedia);
+    }
+    /**
+     * Get productMedia
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProductMedia()
+    {
+        return $this->productMedia;
+    }
+    /**
+     * Set productMedia
+     *
+     * @param array
+     * @return Product
+     */
+    public function setProductMedia($media)
+    {
+        $this->productMedia = new ArrayCollection();
+        foreach ($media as $m) {
+            $m->setProduct($this);
+            $this->addProductMedia($m);
+        }
+        return $this;
     }
 }

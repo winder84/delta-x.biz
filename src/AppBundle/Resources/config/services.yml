@@ -16,3 +16,15 @@ services:
         arguments: [~, AppBundle\Entity\Category, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Контент, label: Категории }
+
+    app.admin.product_link:
+        class: AppBundle\Admin\ProductLinkAdmin
+        arguments: [~, AppBundle\Entity\ProductLink, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Контент, label: Тип }
+
+    app.admin.product_has_media:
+            class: AppBundle\Admin\ProductHasMediaAdmin
+            arguments: [~, AppBundle\Entity\ProductHasMedia, AppBundle:ProductHasMediaAdmin]
+            tags:
+                - {name: sonata.admin, manager_type: orm, group: Контент, label: Изображения продукции, show_in_dashboard: false}
