@@ -33,7 +33,6 @@ class ProductAdmin extends AbstractAdmin
         $listMapper
             ->add('title')
             ->add('alias')
-            ->add('text')
             ->add('category')
             ->add('productLink')
             ->add('_action', null, array(
