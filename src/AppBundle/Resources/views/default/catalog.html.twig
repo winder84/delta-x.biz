@@ -19,10 +19,14 @@
                         Категория
                     </div>
                     <div class="catalogMenu">
-                        <span class="currentCatalog collapsed">Авторские изделия</span>
-                        <ul>
-                            <li><a href="#">Серийные изделия</a></li>
-                            <li><a href="#">Индивидуальные заказы</a></li>
+                        {% for productLink in productLinks %}
+                            {% if loop.first %}
+                                <span class="currentCatalog collapsed">{{ productLink }}</span>
+                                <ul>
+                            {% else %}
+                                <li><a href="#">{{ productLink }}</a></li>
+                            {% endif %}
+                        {% endfor %}
                         </ul>
                     </div>
                     <div class="searchContainer">
@@ -36,133 +40,48 @@
                     <div class="catalogBlock">
                         <div class="catalogFilter">
                             <ul>
-                                <li><a href="#">Самовары</a></li>
-                                <li><a href="#">Вазы</a></li>
-                                <li><a href="#">Светильники</a></li>
-                                <li><a href="#">Шахматы</a></li>
-                                <li><a href="#">Подсвечники-канделябры</a></li>
-                                <li><a href="#">Часы</a></li>
-                                <li class="act"><a href="#">Наборы-сервизы</a></li>
-                                <li><a href="#">Фруктовницы</a></li>
-                                <li><a href="#">Лепнина-Скульптура</a></li>
-                                <li><a href="#">Продукция провославной тематики</a></li>
+                                {% for productCategory in productCategories %}
+                                    <li><a href="#">{{ productCategory }}</a></li>
+                                {% endfor %}
                             </ul>
                         </div>
                         <div class="catalogListBlock">
-                            <div class="paginator">
-                                <ul>
-                                    <li class="leftArrow"><a href="#"></a></li>
-                                    <li class="act"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">11</a></li>
-                                    <li class="rightArrow"><a href="#"></a></li>
-                                </ul>
-                            </div>
+                            {#<div class="paginator">#}
+                                {#<ul>#}
+                                    {#<li class="leftArrow"><a href="#"></a></li>#}
+                                    {#<li class="act"><a href="#">1</a></li>#}
+                                    {#<li><a href="#">2</a></li>#}
+                                    {#<li><a href="#">3</a></li>#}
+                                    {#<li><a href="#">4</a></li>#}
+                                    {#<li><a href="#">11</a></li>#}
+                                    {#<li class="rightArrow"><a href="#"></a></li>#}
+                                {#</ul>#}
+                            {#</div>#}
                             <div class="catalogList">
-                                <div class="catalogItem">
-                                    <a href="#" class="catalogItemBody">
-                                        <span class="catalogItemImage">
-                                            <img src="{{ asset('bundles/app/images/catalog_image.png') }}" alt="/" >
-                                        </span>
-                                        <span class="catalogItemTitle">НАБОР КОФЕЙНЫЙ <span class="bold">“МЕЧТА”</span></span>
-                                        <span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста бля большей конверсии продукции.</span>
-                                    </a>
-                                    <a href="/catalog/item/1" class="catalogItemLink bold">Подробнее...</a>
-                                </div>
-                                <div class="catalogItem">
-                                    <a href="#" class="catalogItemBody">
-                                        <span class="catalogItemImage">
-                                            <img src="{{ asset('bundles/app/images/catalog_image.png') }}" alt="/" >
-                                        </span>
-                                        <span class="catalogItemTitle">НАБОР КОФЕЙНЫЙ <span class="bold">“МЕЧТА”</span></span>
-                                        <span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста бля большей конверсии продукции.</span>
-                                    </a>
-                                    <a href="#" class="catalogItemLink bold">Подробнее...</a>
-                                </div>
-                                <div class="catalogItem">
-                                    <a href="#" class="catalogItemBody">
-                                        <span class="catalogItemImage">
-                                            <img src="{{ asset('bundles/app/images/catalog_image.png') }}" alt="/" >
-                                        </span>
-                                        <span class="catalogItemTitle">НАБОР КОФЕЙНЫЙ <span class="bold">“МЕЧТА”</span></span>
-                                        <span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста бля большей конверсии продукции.</span>
-                                    </a>
-                                    <a href="#" class="catalogItemLink bold">Подробнее...</a>
-                                </div>
-                                <div class="catalogItem">
-                                    <a href="#" class="catalogItemBody">
-                                        <span class="catalogItemImage">
-                                            <img src="{{ asset('bundles/app/images/catalog_image.png') }}" alt="/" >
-                                        </span>
-                                        <span class="catalogItemTitle">НАБОР КОФЕЙНЫЙ <span class="bold">“МЕЧТА”</span></span>
-                                        <span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста бля большей конверсии продукции.</span>
-                                    </a>
-                                    <a href="#" class="catalogItemLink bold">Подробнее...</a>
-                                </div>
-                                <div class="catalogItem">
-                                    <a href="#" class="catalogItemBody">
-                                        <span class="catalogItemImage">
-                                            <img src="{{ asset('bundles/app/images/catalog_image.png') }}" alt="/" >
-                                        </span>
-                                        <span class="catalogItemTitle">НАБОР КОФЕЙНЫЙ <span class="bold">“МЕЧТА”</span></span>
-                                        <span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста бля большей конверсии продукции.</span>
-                                    </a>
-                                    <a href="#" class="catalogItemLink bold">Подробнее...</a>
-                                </div>
-                                <div class="catalogItem">
-                                    <a href="#" class="catalogItemBody">
-                                        <span class="catalogItemImage">
-                                            <img src="{{ asset('bundles/app/images/catalog_image.png') }}" alt="/" >
-                                        </span>
-                                        <span class="catalogItemTitle">НАБОР КОФЕЙНЫЙ <span class="bold">“МЕЧТА”</span></span>
-                                        <span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста бля большей конверсии продукции.</span>
-                                    </a>
-                                    <a href="#" class="catalogItemLink bold">Подробнее...</a>
-                                </div>
-                                <div class="catalogItem">
-                                    <a href="#" class="catalogItemBody">
-                                        <span class="catalogItemImage">
-                                            <img src="{{ asset('bundles/app/images/catalog_image.png') }}" alt="/" >
-                                        </span>
-                                        <span class="catalogItemTitle">НАБОР КОФЕЙНЫЙ <span class="bold">“МЕЧТА”</span></span>
-                                        <span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста бля большей конверсии продукции.</span>
-                                    </a>
-                                    <a href="#" class="catalogItemLink bold">Подробнее...</a>
-                                </div>
-                                <div class="catalogItem">
-                                    <a href="#" class="catalogItemBody">
-                                        <span class="catalogItemImage">
-                                            <img src="{{ asset('bundles/app/images/catalog_image.png') }}" alt="/" >
-                                        </span>
-                                        <span class="catalogItemTitle">НАБОР КОФЕЙНЫЙ <span class="bold">“МЕЧТА”</span></span>
-                                        <span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста бля большей конверсии продукции.</span>
-                                    </a>
-                                    <a href="#" class="catalogItemLink bold">Подробнее...</a>
-                                </div>
-                                <div class="catalogItem">
-                                    <a href="#" class="catalogItemBody">
-                                        <span class="catalogItemImage">
-                                            <img src="{{ asset('bundles/app/images/catalog_image.png') }}" alt="/" >
-                                        </span>
-                                        <span class="catalogItemTitle">НАБОР КОФЕЙНЫЙ <span class="bold">“МЕЧТА”</span></span>
-                                        <span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста бля большей конверсии продукции.</span>
-                                    </a>
-                                    <a href="#" class="catalogItemLink bold">Подробнее...</a>
-                                </div>
+                                {% for product in products %}
+                                    <div class="catalogItem">
+                                        <a href="/catalog/item/{{ product.alias }}" class="catalogItemBody">
+                                            <span class="catalogItemImage">
+                                                <img src="{% path product.productMedia.0.media, 'big' %}" alt="/" >
+                                            </span>
+                                            <span class="catalogItemTitle">{{ product.title }}</span>
+                                            {#<span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста бля большей конверсии продукции.</span>#}
+                                        </a>
+                                        <a href="/catalog/item/{{ product.alias }}" class="catalogItemLink bold">Подробнее...</a>
+                                    </div>
+                                {% endfor %}
                             </div>
-                            <div class="paginator">
-                                <ul>
-                                    <li class="leftArrow"><a href="#"></a></li>
-                                    <li class="act"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">11</a></li>
-                                    <li class="rightArrow"><a href="#"></a></li>
-                                </ul>
-                            </div>
+                            {#<div class="paginator">#}
+                                {#<ul>#}
+                                    {#<li class="leftArrow"><a href="#"></a></li>#}
+                                    {#<li class="act"><a href="#">1</a></li>#}
+                                    {#<li><a href="#">2</a></li>#}
+                                    {#<li><a href="#">3</a></li>#}
+                                    {#<li><a href="#">4</a></li>#}
+                                    {#<li><a href="#">11</a></li>#}
+                                    {#<li class="rightArrow"><a href="#"></a></li>#}
+                                {#</ul>#}
+                            {#</div>#}
                         </div>
                     </div>
                 </div>

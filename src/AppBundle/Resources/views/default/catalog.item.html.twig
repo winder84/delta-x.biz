@@ -6,11 +6,9 @@
         <div class="breadCrumbs clearfix">
             <div class="breadCrumbsBlock clearfixk">
                 <ul>
-                    <li class="home"><a href="index.html"></a></li>
-                    <li><a href="catalog.html">каталог продукции</a></li>
-                    <li><a href="catalog.html">авторские изделия</a></li>
-                    <li><a href="catalog.html">наборы-сервизы</a></li>
-                    <li><span>набор “Мечта”</span></li>
+                    <li class="home"><a href="/"></a></li>
+                    <li><a href="/catalog">каталог продукции</a></li>
+                    <li><span>{{ productItem.title }}</span></li>
                 </ul>
             </div>
         </div>
@@ -28,48 +26,42 @@
                         </ul>
                     </div>
                     <div class="searchContainer">
-                        <form action="/">
-                            <input class="searchBtn" type="submit" value="">
-                            <input class="searchInput" type="text" placeholder="поиск...">
-                        </form>
+                        {#<form action="/">#}
+                            {#<input class="searchBtn" type="submit" value="">#}
+                            {#<input class="searchInput" type="text" placeholder="поиск...">#}
+                        {#</form>#}
                     </div>
                 </div>
                 <div class="contentBlock">
                     <div class="catalogBlock">
                         <div class="catalogFilter">
                             <ul>
-                                <li><a href="#">Самовары</a></li>
-                                <li><a href="#">Вазы</a></li>
-                                <li><a href="#">Светильники</a></li>
-                                <li><a href="#">Шахматы</a></li>
-                                <li><a href="#">Подсвечники-канделябры</a></li>
-                                <li><a href="#">Часы</a></li>
-                                <li class="act"><a href="#">Наборы-сервизы</a></li>
-                                <li><a href="#">Фруктовницы</a></li>
-                                <li><a href="#">Лепнина-Скульптура</a></li>
-                                <li><a href="#">Продукция провославной тематики</a></li>
+                                {% for productCategory in productCategories %}
+                                    <li><a href="#">{{ productCategory }}</a></li>
+                                {% endfor %}
                             </ul>
                         </div>
                         <div class="catalogListBlock">
                             <div class="paginator">
-                                <ul>
-                                    <li class="leftArrow"><a href="#"></a></li>
-                                    <li class="act"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">11</a></li>
-                                    <li class="rightArrow"><a href="#"></a></li>
-                                </ul>
+                                {#<ul>#}
+                                    {#<li class="leftArrow"><a href="#"></a></li>#}
+                                    {#<li class="act"><a href="#">1</a></li>#}
+                                    {#<li><a href="#">2</a></li>#}
+                                    {#<li><a href="#">3</a></li>#}
+                                    {#<li><a href="#">4</a></li>#}
+                                    {#<li><a href="#">11</a></li>#}
+                                    {#<li class="rightArrow"><a href="#"></a></li>#}
+                                {#</ul>#}
                             </div>
                             <div class="catalogDescrItem">
-                                <a href="#" class="backToCatalog">Назад к каталогу</a>
+                                <a href="/catalog" class="backToCatalog">Назад к каталогу</a>
                                 <script>
                                     $(function() {
                                         $('#catalogDescrThumbSlider').flexslider({
                                             animation: "slide",
                                             controlNav: false,
-                                            itemWidth: 139.5,
+                                            itemWidth: 150,
+                                            animationLoop: false,
                                             itemMargin: 8,
                                             asNavFor: '#catalogDescrSlider'
                                         });
@@ -77,6 +69,7 @@
                                             animation: "slide",
                                             controlNav: false,
                                             directionNav: false,
+                                            animationLoop: false,
                                             sync: "#catalogDescrThumbSlider"
                                         });
                                     });
@@ -84,73 +77,45 @@
                                 <div class="catalogDescrSlides">
                                     <div id="catalogDescrSlider" class="catalogDescrSlider">
                                         <ul class="slides">
-                                            <li>
-                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
-                                            </li>
-                                            <li>
-                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
-                                            </li>
-                                            <li>
-                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
-                                            </li>
-                                            <li>
-                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
-                                            </li>
-                                            <li>
-                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
-                                            </li>
-                                            <li>
-                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
-                                            </li>
-                                            <li>
-                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
-                                            </li>
+                                            {% for productMedia in productItem.productMedia %}
+                                                {% if productMedia.media is defined %}
+                                                    <li>
+                                                        <img style="height: 690px; max-width: 850px; margin: 0 auto;" src="{% path productMedia.media, 'big' %}" alt ="" />
+                                                    </li>
+                                                {% endif %}
+                                            {% endfor %}
                                         </ul>
                                     </div>
                                     <div id="catalogDescrThumbSlider" class="catalogDescrThumbSlider">
                                         <ul class="slides">
-                                            <li>
-                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
-                                            </li>
-                                            <li>
-                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
-                                            </li>
-                                            <li>
-                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
-                                            </li>
-                                            <li>
-                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
-                                            </li>
-                                            <li>
-                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
-                                            </li>
-                                            <li>
-                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
-                                            </li>
-                                            <li>
-                                                <img src="{{ asset('bundles/app/images/catalog_slide1.png') }}" alt ="" />
-                                            </li>
+                                            {% for productMedia in productItem.productMedia %}
+                                                {% if productMedia.media is defined %}
+                                                    <li>
+                                                        <img style="height: 185px;" src="{% path productMedia.media, 'big' %}" alt ="" />
+                                                    </li>
+                                                {% endif %}
+                                            {% endfor %}
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="catalogDescrBody">
-                                    <span class="catalogDescrTitle">НАБОР КОФЕЙНЫЙ <span class="bold">“МЕЧТА”</span></span>
+                                    <span class="catalogDescrTitle">{{ productItem.title }}</span>
                                     <p>
-                                        Небольное описание сервиза, материалов и прочего. Немного текста бля большей конверсии продукции. Многие думают, что Lorem Ipsum - взятый с потолка псевдо-латинский набор слов, но это не совсем так. Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur", и занялся его поисками в классической латинской литературе. В результате он нашёл неоспоримый первоисточник Lorem Ipsum в разделах 1.10.32 и 1.10.33 книги "de Finibus Bonorum et Malorum" ("О пределах добра и зла"), написанной Цицероном в 45 году н.э. Этот трактат по теории этики был очень популярен в эпоху Возрождения. Первая строка Lorem Ipsum, "Lorem ipsum dolor sit amet..", происходит от одной из строк в разделе 1.10.32
+                                        {{ productItem.text }}
                                     </p>
                                 </div>
                             </div>
-                            <div class="paginator">
-                                <ul>
-                                    <li class="leftArrow"><a href="#"></a></li>
-                                    <li class="act"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">11</a></li>
-                                    <li class="rightArrow"><a href="#"></a></li>
-                                </ul>
-                            </div>
+                            {#<div class="paginator">#}
+                                {#<ul>#}
+                                    {#<li class="leftArrow"><a href="#"></a></li>#}
+                                    {#<li class="act"><a href="#">1</a></li>#}
+                                    {#<li><a href="#">2</a></li>#}
+                                    {#<li><a href="#">3</a></li>#}
+                                    {#<li><a href="#">4</a></li>#}
+                                    {#<li><a href="#">11</a></li>#}
+                                    {#<li class="rightArrow"><a href="#"></a></li>#}
+                                {#</ul>#}
+                            {#</div>#}
                             <div class="maybeBlock">
                                 <span class="titleIcon">
                                     <img src="{{ asset('bundles/app/images/catalog_title_icon.png') }}" alt="/" />
