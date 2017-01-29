@@ -60,7 +60,7 @@
                                         $('#catalogDescrThumbSlider').flexslider({
                                             animation: "slide",
                                             controlNav: false,
-                                            itemWidth: 150,
+                                            itemWidth: 200,
                                             animationLoop: false,
                                             itemMargin: 8,
                                             asNavFor: '#catalogDescrSlider'
@@ -80,7 +80,7 @@
                                             {% for productMedia in productItem.productMedia %}
                                                 {% if productMedia.media is defined %}
                                                     <li>
-                                                        <img style="height: 690px; max-width: 850px; margin: 0 auto;" src="{% path productMedia.media, 'big' %}" alt ="" />
+                                                        <img style="height: 690px; max-width: 850px; margin: 0 auto;" src="{% path productMedia.media, 'prod' %}" alt ="" />
                                                     </li>
                                                 {% endif %}
                                             {% endfor %}
@@ -91,7 +91,7 @@
                                             {% for productMedia in productItem.productMedia %}
                                                 {% if productMedia.media is defined %}
                                                     <li>
-                                                        <img style="height: 185px;" src="{% path productMedia.media, 'big' %}" alt ="" />
+                                                        <img src="{% path productMedia.media, 'prodPrev' %}" alt ="" />
                                                     </li>
                                                 {% endif %}
                                             {% endfor %}

@@ -124,9 +124,11 @@ sonata_media:
                 - sonata.media.provider.image
 #                - sonata.media.provider.file
             formats:
-                preview: { width: 100, quality: 100}
-                small:   { width: 100 , quality: 70}
-                big:     { width: 500 , quality: 70}
+                preview:  { width: 100, quality: 100}
+                small:    { width: 100, quality: 70}
+                big:      { width: 500, quality: 70}
+                prodPrev: { width: 200, quality: 100}
+                prod:     { width: 2000, quality: 100}
         engine:
             providers:
                 - sonata.media.provider.image
