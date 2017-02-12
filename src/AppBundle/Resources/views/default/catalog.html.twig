@@ -1,14 +1,13 @@
 {% extends 'AppBundle:default:layout.html.twig' %}
 
 {% block body %}
-    {% include 'AppBundle:default:slider.html.twig' %}
     <div class="innerPageBlock clearfix">
         <div class="breadCrumbs clearfix">
             <div class="breadCrumbsBlock clearfixk">
                 <ul>
                     <li class="home"><a href="/"></a></li>
                     <li><a href="/catalog">каталог продукции</a></li>
-                    <li><span>авторские изделия</span></li>
+                    {#<li><span>авторские изделия</span></li>#}
                 </ul>
             </div>
         </div>
@@ -21,10 +20,11 @@
                     <div class="catalogMenu">
                         {% for productLink in productLinks %}
                             {% if loop.first %}
+                            {#{% if app.request.query.get("productLinkFilter") == productLink.id %}#}
                                 <span class="currentCatalog collapsed">{{ productLink }}</span>
                                 <ul>
                             {% else %}
-                                <li><a href="#">{{ productLink }}</a></li>
+                                <li><a href="/catalog?productLinkFilter={{ productLink.id }}">{{ productLink }}</a></li>
                             {% endif %}
                         {% endfor %}
                         </ul>
@@ -41,7 +41,9 @@
                         <div class="catalogFilter">
                             <ul>
                                 {% for productCategory in productCategories %}
-                                    <li><a href="#">{{ productCategory }}</a></li>
+                                    <li {% if app.request.query.get("categoryFilter") == productCategory.id %}class="act" {% endif %}>
+                                        <a href="/catalog?categoryFilter={{ productCategory.id }}">{{ productCategory }}</a>
+                                    </li>
                                 {% endfor %}
                             </ul>
                         </div>

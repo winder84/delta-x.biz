@@ -1,7 +1,6 @@
 {% extends 'AppBundle:default:layout.html.twig' %}
 
 {% block body %}
-    {% include 'AppBundle:default:slider.html.twig' %}
     <div class="innerPageBlock clearfix">
         <div class="breadCrumbs clearfix">
             <div class="breadCrumbsBlock clearfixk">
@@ -36,8 +35,8 @@
                     <div class="catalogBlock">
                         <div class="catalogFilter">
                             <ul>
-                                {% for productCategory in productCategories %}
-                                    <li><a href="#">{{ productCategory }}</a></li>
+                                {% for category in productCategories %}
+                                    <li {% if category == productCategory %}class="act" {% endif %}><a href="#">{{ category }}</a></li>
                                 {% endfor %}
                             </ul>
                         </div>
@@ -80,6 +79,9 @@
                                             {% for productMedia in productItem.productMedia %}
                                                 {% if productMedia.media is defined %}
                                                     <li>
+                                                        <p style="position: absolute; font: 20px bold; margin: 20px 0 0 50px; color: black;">
+                                                            {{ loop.index }}
+                                                        </p>
                                                         <img style="height: 690px; max-width: 850px; margin: 0 auto;" src="{% path productMedia.media, 'prod' %}" alt ="" />
                                                     </li>
                                                 {% endif %}
@@ -91,6 +93,9 @@
                                             {% for productMedia in productItem.productMedia %}
                                                 {% if productMedia.media is defined %}
                                                     <li>
+                                                        <p style="position: absolute; margin: 10px 0 0 20px; color: black;">
+                                                            {{ loop.index }}
+                                                        </p>
                                                         <img src="{% path productMedia.media, 'prodPrev' %}" alt ="" />
                                                     </li>
                                                 {% endif %}
@@ -116,44 +121,30 @@
                                     {#<li class="rightArrow"><a href="#"></a></li>#}
                                 {#</ul>#}
                             {#</div>#}
-                            <div class="maybeBlock">
-                                <span class="titleIcon">
-                                    <img src="{{ asset('bundles/app/images/catalog_title_icon.png') }}" alt="/" />
-                                </span>
-                                <h2 class="mainTitle">ВОЗМОЖНО ВАМ ТАК ЖЕ ПОНРАВИТСЯ</h2>
-                                <div class="catalogListAdd">
-                                    <div class="catalogItem">
-                                        <a href="#" class="catalogItemBody">
-                                        <span class="catalogItemImage">
-                                            <img src="{{ asset('bundles/app/images/catalog_image.png') }}" alt="/" >
-                                        </span>
-                                            <span class="catalogItemTitle">НАБОР КОФЕЙНЫЙ <span class="bold">“МЕЧТА”</span></span>
-                                            <span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста для большей конверсии продукции.</span>
-                                        </a>
-                                        <a href="#" class="catalogItemLink bold">Подробнее...</a>
-                                    </div>
-                                    <div class="catalogItem">
-                                        <a href="#" class="catalogItemBody">
-                                        <span class="catalogItemImage">
-                                            <img src="{{ asset('bundles/app/images/catalog_image.png') }}" alt="/" >
-                                        </span>
-                                            <span class="catalogItemTitle">НАБОР КОФЕЙНЫЙ <span class="bold">“МЕЧТА”</span></span>
-                                            <span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста для большей конверсии продукции.</span>
-                                        </a>
-                                        <a href="#" class="catalogItemLink bold">Подробнее...</a>
-                                    </div>
-                                    <div class="catalogItem">
-                                        <a href="#" class="catalogItemBody">
-                                        <span class="catalogItemImage">
-                                            <img src="{{ asset('bundles/app/images/catalog_image.png') }}" alt="/" >
-                                        </span>
-                                            <span class="catalogItemTitle">НАБОР КОФЕЙНЫЙ <span class="bold">“МЕЧТА”</span></span>
-                                            <span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста для большей конверсии продукции.</span>
-                                        </a>
-                                        <a href="#" class="catalogItemLink bold">Подробнее...</a>
+                            {% if likeProducts %}
+                                <div class="maybeBlock">
+                                    <span class="titleIcon">
+                                        <img src="{{ asset('bundles/app/images/catalog_title_icon.png') }}" alt="/" />
+                                    </span>
+                                    <h2 class="mainTitle">ВОЗМОЖНО ВАМ ТАК ЖЕ ПОНРАВИТСЯ</h2>
+                                    <div class="catalogListAdd">
+                                        {% for likeProduct in likeProducts %}
+                                            {% if loop.index0 < 3 %}
+                                                <div class="catalogItem">
+                                                    <a href="#" class="catalogItemBody">
+                                                    <span class="catalogItemImage">
+                                                        <img src="{% path likeProduct.productMedia.0.media, 'big' %}" alt="/" >
+                                                    </span>
+                                                        <span class="catalogItemTitle">{{ likeProduct.title }}</span></span>
+                                                        {#<span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста для большей конверсии продукции.</span>#}
+                                                    </a>
+                                                    <a href="#" class="catalogItemLink bold">Подробнее...</a>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
                                     </div>
                                 </div>
-                            </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
