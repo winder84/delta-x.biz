@@ -18,10 +18,15 @@
                         Категория
                     </div>
                     <div class="catalogMenu">
-                        <span class="currentCatalog collapsed">Авторские изделия</span>
+                        {% for productLink in productLinks %}
+                        {% if loop.first %}
+                        {#{% if app.request.query.get("productLinkFilter") == productLink.id %}#}
+                        <span class="currentCatalog collapsed">{{ productLink }}</span>
                         <ul>
-                            <li><a href="#">Серийные изделия</a></li>
-                            <li><a href="#">Индивидуальные заказы</a></li>
+                            {% else %}
+                                <li><a href="/catalog?productLinkFilter={{ productLink.id }}">{{ productLink }}</a></li>
+                            {% endif %}
+                            {% endfor %}
                         </ul>
                     </div>
                     <div class="searchContainer">
@@ -36,7 +41,9 @@
                         <div class="catalogFilter">
                             <ul>
                                 {% for category in productCategories %}
-                                    <li {% if category == productCategory %}class="act" {% endif %}><a href="#">{{ category }}</a></li>
+                                    <li {% if category == productCategory %}class="act" {% endif %}>
+                                        <a href="/catalog?categoryFilter={{ category.id }}">{{ category }}</a>
+                                    </li>
                                 {% endfor %}
                             </ul>
                         </div>

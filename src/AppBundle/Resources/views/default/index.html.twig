@@ -159,7 +159,8 @@
                 <p class="contactsData">
                     Телефон: (87937) 6-79-36, 6-65-36<br />
                     Факс: 	(87937) 6-79-36<br />
-                    <a href="http://www.delta-x.ru">http://www.delta-x.ru</a><br /><br />
+                    <a href="http://www.delta-x.ru">http://www.delta-x.ru</a><br />
+                    Email: 	<a href="mailto:admin@delta-x.ru">admin@delta-x.ru</a><br /><br />
                     Информация: График работы:<br />
                     пн. - пт. с 9:00 до 17:00; сб. - с 9:00 до 16:00 (без перерыва)
                 </p>
@@ -167,7 +168,7 @@
             <div class="contactsForm">
                 <a class="vk" href="https://vk.com" target="_blank" rel="nofollow"><img src="{{ asset('bundles/app/images/vk_icon.svg') }}" alt="" /><span>Наш паблик</span></a>
                 <div class="formFeedback">
-                    <form action="/">
+                    <form action="/sendMail">
                         <span class="titleForm">Вы можете написать нам:</span>
                         <div class="inputBlock">
                             <label>Введите Ваше имя:</label>
@@ -185,13 +186,7 @@
                             <label>Текст Вашего сообщения:</label>
                             <textarea name="message"></textarea>
                         </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" />
-                                <span>Отправить копию этого сообщения на Ваш адрес</span>
-                            </label>
-                        </div>
-                        <input type="submit" value="Отправить" />
+                        <input style="color: black;" type="submit" value="Отправить" />
                     </form>
                 </div>
             </div>
@@ -200,7 +195,7 @@
     <!-- Карта -->
     <section class="map clearfix">
         <div class="mapBlock">
-            <script src='https://maps.googleapis.com/maps/api/js?key=&sensor=false&extension=.js'></script>
+            <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAAO66PSXVFEKBaHdlGYnOyPpZHAcwOGGI&sensor=false&extension=.js'></script>
             <script>
                 google.maps.event.addDomListener(window, 'load', init);
                 var map;

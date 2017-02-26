@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\MainSlider;
 use AppBundle\Entity\Product;
 use AppBundle\Repository\MainSliderRepository;
+use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,13 +39,14 @@ class DefaultController extends Controller
     public function catalogAction(Request $request)
     {
         $this->getMenuItems();
+        /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
         $slides = $em
             ->getRepository('AppBundle:MainSlider')
             ->findAll();
         $allProducts = $em
             ->getRepository('AppBundle:Product')
-            ->findAll();
+            ->findBy(array(), array('title' => 'ASC'));
         $filterArray = array();
         $categoryFilter = $request->get('categoryFilter');
         $productLinkFilter = $request->get('productLinkFilter');
@@ -57,7 +59,7 @@ class DefaultController extends Controller
         if ($filterArray) {
             $products = $em
                 ->getRepository('AppBundle:Product')
-                ->findBy($filterArray);
+                ->findBy($filterArray, array('title' => 'ASC'));
         } else {
             $products = $allProducts;
         }
@@ -143,6 +145,24 @@ class DefaultController extends Controller
             'productCategories' => $this->productCategories['productCategories'],
             'productLinks' => $this->productCategories['productLinks'],
         ]);
+    }
+
+    /**
+     * @Route("/sendMail", name="send_mail")
+     */
+    public function sendMailAction(Request $request)
+    {
+//        $to      = 'admin@delta-x.ru';
+        $to      = 'winder84@mail.ru';
+        $subject = 'Письмо с сайта';
+        $message = $request->get('name') . '<br />' . $request->get('email') . '<br /><br />' . $request->get('theme') . '<br /><br />' . $request->get('message');
+        $headers = 'From: admin@delta-x.ru' . "\r\n";
+//            'Reply-To: webmaster@example.com' . "\r\n" .
+//            'X-Mailer: PHP/' . phpversion();
+
+        mail($to, $subject, $message, $headers);
+
+        return $this->redirect('/');
     }
 
     private function getProductCategories($products)
