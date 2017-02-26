@@ -152,15 +152,12 @@ class DefaultController extends Controller
      */
     public function sendMailAction(Request $request)
     {
-//        $to      = 'admin@delta-x.ru';
-        $to      = 'winder84@mail.ru';
-        $subject = 'Письмо с сайта';
+        $to      = 'admin@delta-x.ru';
+//        $to      = 'winder84@mail.ru';
+        $subject = 'Письмо с сайта delta-x.biz';
         $message = $request->get('name') . '<br />' . $request->get('email') . '<br /><br />' . $request->get('theme') . '<br /><br />' . $request->get('message');
-        $headers = 'From: admin@delta-x.ru' . "\r\n";
-//            'Reply-To: webmaster@example.com' . "\r\n" .
-//            'X-Mailer: PHP/' . phpversion();
 
-        mail($to, $subject, $message, $headers);
+        mail($to, $subject, $message);
 
         return $this->redirect('/');
     }
