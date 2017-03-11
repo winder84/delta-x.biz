@@ -155,7 +155,7 @@ class DefaultController extends Controller
 //        $to      = 'admin@delta-x.ru';
         $to      = 'winder84@mail.ru';
         $subject = 'Письмо с сайта delta-x.biz';
-        $message = $request->get('name') . '\r\n' . $request->get('email') . '\r\n\r\n' . $request->get('theme') . '\r\n\r\n' . $request->get('message');
+        $message = $request->get('name') . "\r\n" . $request->get('email') . "\r\n\r\n" . $request->get('theme') . "\r\n\r\n" . $request->get('message');
         $headers = 'From: webmaster@delta-x.biz' . "\r\n" .
             'Reply-To: webmaster@delta-x.biz' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
