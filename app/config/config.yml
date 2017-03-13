@@ -166,6 +166,14 @@ sonata_media:
     providers:
         image:
             resizer: sonata.media.resizer.square
+        youtube:
+            service:    sonata.media.provider.youtube
+            resizer:    sonata.media.resizer.simple
+            filesystem: sonata.media.filesystem.local
+            cdn:        sonata.media.cdn.server
+            generator:  sonata.media.generator.default
+            thumbnail:  sonata.media.thumbnail.format
+            html5: true
 
 sonata_classification:
     class:

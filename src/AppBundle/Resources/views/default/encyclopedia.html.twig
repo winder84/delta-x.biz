@@ -28,12 +28,16 @@
                         <div class="encyclopediaBlock">
                             {% for article in articles %}
                                 <div class="encyclopediaItem">
-                                    <span class="encyclopediaTitle">{{ article.title }}</span>
+                                    <span class="encyclopediaTitle">{{ article.title }} ({% if article.type == 0 %}Статья{% else %}Новость{% endif %})</span>
                                     <div class="encyclopediaBody">
                                         {{ article.prevDescription|raw }}
-                                        <a href="/encyclopedia/item/{{ article.alias }}" class="encyclopediaMore">...подробнее</a>
+                                        <a href="/encyclopedia/item/{{ article.alias }}" class="encyclopediaMore">подробнее...</a>
                                     </div>
                                 </div>
+                                {% if loop.index % 2 == 0 and not loop.last%}
+                                    </div>
+                                    <div class="encyclopediaBlock">
+                                {% endif %}
                             {% endfor %}
                         </div>
                     </div>

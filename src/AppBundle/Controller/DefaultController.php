@@ -25,11 +25,25 @@ class DefaultController extends Controller
         $slides = $em
             ->getRepository('AppBundle:MainSlider')
             ->findAll();
+        $lastNews = $em
+            ->getRepository('AppBundle:Article')
+            ->findOneBy(
+                array('type' => 1),
+                array('id' => 'DESC')
+            );
+        $lastArticles = $em
+            ->getRepository('AppBundle:Article')
+            ->findBy(
+                array('type' => 0),
+                array('id' => 'DESC')
+            );
         return $this->render('AppBundle:default:index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
             'slides' => $slides,
             'productCategories' => $this->productCategories['productCategories'],
             'productLinks' => $this->productCategories['productLinks'],
+            'lastNews' => $lastNews,
+            'lastArticles' => $lastArticles,
         ]);
     }
 
@@ -81,9 +95,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $articles = $em
             ->getRepository('AppBundle:Article')
-            ->findBy(array(
-                'type' => 0
-            ));
+            ->findBy(array(), array('id' => 'DESC'));
         return $this->render('AppBundle:default:encyclopedia.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
             'productCategories' => $this->productCategories['productCategories'],

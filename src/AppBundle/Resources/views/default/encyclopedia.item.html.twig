@@ -35,11 +35,19 @@
                             <div id="catalogDescrThumbSlider" class="catalogDescrThumbSlider">
                                 <ul class="slides">
                                     {% for articleMedia in article.articleMedia %}
-                                        {% if articleMedia.media is defined %}
+                                        {% if articleMedia.media %}
                                             {#{{ dump(articleMedia.media) }}#}
-                                            <a href="{% path articleMedia.media, 'big' %}"  data-fancybox="images" data-caption="{{ article.title }}">
-                                                <img src="{% path articleMedia.media, 'prodPrev' %}" />
-                                            </a>
+                                            {% if articleMedia.media.providerName == 'sonata.media.provider.youtube' %}
+                                                <a data-fancybox="images" data-caption="{{ article.title }}"
+                                                    href="https://youtu.be/{{ articleMedia.media.providerReference }}" class="videoLink">
+                                                    <img width="300" src="{% path articleMedia.media, 'big' %}" />
+                                                </a>
+                                            {% else %}
+                                                <a data-fancybox="images" data-caption="{{ article.title }}"
+                                                   href="{% path articleMedia.media, 'big' %}">
+                                                    <img src="{% path articleMedia.media, 'prodPrev' %}" />
+                                                </a>
+                                            {% endif %}
                                         {% endif %}
                                     {% endfor %}
                                 </ul>

@@ -35,6 +35,7 @@ class ArticleAdmin extends AbstractAdmin
                     '1' => 'Новость',
                 )
             ))
+            ->add('alias')
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
