@@ -79,32 +79,36 @@ class DefaultController extends Controller
     {
         $this->getMenuItems();
         $em = $this->getDoctrine()->getManager();
-        $slides = $em
-            ->getRepository('AppBundle:MainSlider')
-            ->findAll();
+        $articles = $em
+            ->getRepository('AppBundle:Article')
+            ->findBy(array(
+                'type' => 0
+            ));
         return $this->render('AppBundle:default:encyclopedia.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
-            'slides' => $slides,
             'productCategories' => $this->productCategories['productCategories'],
             'productLinks' => $this->productCategories['productLinks'],
+            'articles' => $articles,
         ]);
     }
 
     /**
-     * @Route("/encyclopedia/item/{id}", name="encyclopedia_item")
+     * @Route("/encyclopedia/item/{alias}", name="encyclopedia_item")
      */
-    public function encyclopediaItemAction(Request $request, $id)
+    public function encyclopediaItemAction(Request $request, $alias)
     {
         $this->getMenuItems();
         $em = $this->getDoctrine()->getManager();
-        $slides = $em
-            ->getRepository('AppBundle:MainSlider')
-            ->findAll();
+        $article = $em
+            ->getRepository('AppBundle:Article')
+            ->findOneBy(array(
+                'alias' => $alias
+            ));
         return $this->render('AppBundle:default:encyclopedia.item.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
-            'slides' => $slides,
             'productCategories' => $this->productCategories['productCategories'],
             'productLinks' => $this->productCategories['productLinks'],
+            'article' => $article,
         ]);
     }
 

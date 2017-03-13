@@ -8,10 +8,9 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class ProductAdmin extends AbstractAdmin
+class ArticleAdmin extends AbstractAdmin
 {
     protected $context = 'default';
-
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -20,8 +19,6 @@ class ProductAdmin extends AbstractAdmin
         $datagridMapper
             ->add('id')
             ->add('title')
-            ->add('alias')
-            ->add('text')
         ;
     }
 
@@ -32,9 +29,12 @@ class ProductAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('title')
-            ->add('alias')
-            ->add('category')
-            ->add('productLink')
+            ->add('type', 'choice', array(
+                'choices' => array(
+                    '0' => 'Статья',
+                    '1' => 'Новость',
+                )
+            ))
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -53,10 +53,15 @@ class ProductAdmin extends AbstractAdmin
         $link_parameters = array();
         $formMapper
             ->add('title')
-            ->add('text', 'ckeditor')
-            ->add('category')
-            ->add('productLink')
-            ->add('productMedia', 'sonata_type_collection', array(
+            ->add('type', 'choice', array(
+                'choices' => array(
+                    '0' => 'Статья',
+                    '1' => 'Новость',
+                )
+            ))
+            ->add('prevDescription', 'ckeditor')
+            ->add('description', 'ckeditor')
+            ->add('articleMedia', 'sonata_type_collection', array(
                 'cascade_validation' => true,
                 'type_options' => array('delete' => false),
                 'required' => false,
@@ -65,11 +70,11 @@ class ProductAdmin extends AbstractAdmin
                 'required' => false,
                 'inline' => 'table',
                 'sortable' => 'position',
-                'targetEntity' => 'AppBundle\Entity\ProductHasMedia',
+                'targetEntity' => 'AppBundle\Entity\ArticleHasMedia',
                 'link_parameters' => array(
                     'context' => $this->context,
                 ),
-                'admin_code' => 'app.admin.product_has_media'
+                'admin_code' => 'app.admin.article_has_media'
             ))
         ;
     }
@@ -82,9 +87,8 @@ class ProductAdmin extends AbstractAdmin
         $showMapper
             ->add('id')
             ->add('title')
-            ->add('alias')
-            ->add('text')
-            ->add('category')
+            ->add('prevDescription')
+            ->add('description')
         ;
     }
 
@@ -187,13 +191,13 @@ class ProductAdmin extends AbstractAdmin
         return strtr($str,$tr);
     }
 
-    public function prePersist($product)
+    public function prePersist($article)
     {
-        $product->setAlias($this->TransUrl($product->getTitle()));
-        $product->setProductMedia($product->getProductMedia());
+        $article->setAlias($this->TransUrl($article->getTitle()));
+        $article->setArticleMedia($article->getArticleMedia());
     }
-    public function preUpdate($product)
+    public function preUpdate($article)
     {
-        $product->setProductMedia($product->getProductMedia());
+        $article->setArticleMedia($article->getArticleMedia());
     }
 }

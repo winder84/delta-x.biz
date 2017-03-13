@@ -70,4 +70,18 @@ class Media extends BaseMedia
     {
         $this->galleryHasMedias->removeElement($galleryHasMedia);
     }
+
+    /**
+     * Set category
+     *
+     * @param \Application\Sonata\ClassificationBundle\Entity\Category $category
+     *
+     * @return Media
+     */
+    public function setCategory(\Application\Sonata\ClassificationBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
 }
