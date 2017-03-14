@@ -40,6 +40,9 @@
                     <div class="catalogBlock">
                         <div class="catalogFilter">
                             <ul>
+                                <li {% if app.request.query.get("categoryFilter") is empty %}class="act" {% endif %}>
+                                    <a href="/catalog">Все</a>
+                                </li>
                                 {% for productCategory in productCategories %}
                                     <li {% if app.request.query.get("categoryFilter") == productCategory.id %}class="act" {% endif %}>
                                         <a href="/catalog?categoryFilter={{ productCategory.id }}">{{ productCategory }}</a>
