@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
 
-    private $productCategories = array();
+    private $productLinks = array();
 
     /**
      * @Route("/", name="homepage")
@@ -40,8 +40,7 @@ class DefaultController extends Controller
         return $this->render('AppBundle:default:index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
             'slides' => $slides,
-            'productCategories' => $this->productCategories['productCategories'],
-            'productLinks' => $this->productCategories['productLinks'],
+            'productLinks' => $this->productLinks,
             'lastNews' => $lastNews,
             'lastArticles' => $lastArticles,
         ]);
@@ -58,31 +57,31 @@ class DefaultController extends Controller
         $slides = $em
             ->getRepository('AppBundle:MainSlider')
             ->findAll();
-        $allProducts = $em
-            ->getRepository('AppBundle:Product')
-            ->findBy(array(), array('title' => 'ASC'));
-        $filterArray = array();
         $categoryFilter = $request->get('categoryFilter');
         $productLinkFilter = $request->get('productLinkFilter');
-        if ($categoryFilter) {
-            $filterArray['category'] = $categoryFilter;
-        }
         if ($productLinkFilter) {
-            $filterArray['productLink'] = $productLinkFilter;
-        }
-        if ($filterArray) {
-            $products = $em
-                ->getRepository('AppBundle:Product')
-                ->findBy($filterArray, array('title' => 'ASC'));
+            $actualProductLink = $em
+                ->getRepository('AppBundle:ProductLink')
+                ->findOneBy(array(
+                    'id' => $productLinkFilter
+                ));
         } else {
-            $products = $allProducts;
+            $actualProductLink = $em
+                ->getRepository('AppBundle:ProductLink')
+                ->findOneBy(array('id' => 2));
         }
+        $products = $em
+            ->getRepository('AppBundle:Product')
+            ->findBy(array('productLink' => $actualProductLink->getId()), array('title' => 'ASC'));
+        $productCategories = $this->getProductCategories($products);
         return $this->render('AppBundle:default:catalog.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
             'slides' => $slides,
             'products' => $products,
-            'productCategories' => $this->productCategories['productCategories'],
-            'productLinks' => $this->productCategories['productLinks'],
+            'productCategories' => $productCategories,
+            'productLinks' => $this->productLinks,
+            'actualProductLink' => $actualProductLink,
+            'actualCategoryId' => $categoryFilter,
         ]);
     }
 
@@ -98,8 +97,7 @@ class DefaultController extends Controller
             ->findBy(array(), array('id' => 'DESC'));
         return $this->render('AppBundle:default:encyclopedia.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
-            'productCategories' => $this->productCategories['productCategories'],
-            'productLinks' => $this->productCategories['productLinks'],
+            'productLinks' => $this->productLinks,
             'articles' => $articles,
         ]);
     }
@@ -118,8 +116,7 @@ class DefaultController extends Controller
             ));
         return $this->render('AppBundle:default:encyclopedia.item.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
-            'productCategories' => $this->productCategories['productCategories'],
-            'productLinks' => $this->productCategories['productLinks'],
+            'productLinks' => $this->productLinks,
             'article' => $article,
         ]);
     }
@@ -131,17 +128,15 @@ class DefaultController extends Controller
     {
         $this->getMenuItems();
         $em = $this->getDoctrine()->getManager();
-        $slides = $em
-            ->getRepository('AppBundle:MainSlider')
-            ->findAll();
-        $allProducts = $em
-            ->getRepository('AppBundle:Product')
-            ->findAll();
         /** @var Product $productItem */
         $productItem = $em
             ->getRepository('AppBundle:Product')
             ->findOneBy(array('alias' => $alias));
-        $productCategories = $this->getProductCategories($allProducts);
+        $actualProductLink = $productItem->getProductLink();
+        $allLinkProducts = $em
+            ->getRepository('AppBundle:Product')
+            ->findBy(array('productLink' => $actualProductLink));
+        $productCategories = $this->getProductCategories($allLinkProducts);
         $productCategory = $productItem->getCategory();
         $likeProducts = $productCategory->getProducts()->toArray();
         foreach ($likeProducts as $key => $likeProduct) {
@@ -152,14 +147,12 @@ class DefaultController extends Controller
         shuffle($likeProducts);
         return $this->render('AppBundle:default:catalog.item.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
-            'slides' => $slides,
             'productItem' => $productItem,
-            'productCategories' => $productCategories['productCategories'],
-            'productLinks' => $productCategories['productLinks'],
+            'productCategories' => $productCategories,
             'likeProducts' => $likeProducts,
             'productCategory' => $productCategory,
-            'productCategories' => $this->productCategories['productCategories'],
-            'productLinks' => $this->productCategories['productLinks'],
+            'productLinks' => $this->productLinks,
+            'actualProductLink' => $actualProductLink,
         ]);
     }
 
@@ -184,19 +177,12 @@ class DefaultController extends Controller
     private function getProductCategories($products)
     {
         $productCategories = array();
-        $productLinks = array();
         foreach ($products as $product) {
             if (!in_array($product->getCategory(), $productCategories)) {
                 $productCategories[] = $product->getCategory();
             }
-            if (!in_array($product->getProductLink(), $productLinks)) {
-                $productLinks[] = $product->getProductLink();
-            }
         }
-        return array(
-            'productCategories' => $productCategories,
-            'productLinks' => $productLinks,
-        );
+        return $productCategories;
     }
 
     private function getMenuItems()
@@ -205,6 +191,12 @@ class DefaultController extends Controller
         $allProducts = $em
             ->getRepository('AppBundle:Product')
             ->findAll();
-        $this->productCategories = $this->getProductCategories($allProducts);
+        $this->productLinks = array();
+        /** @var Product $product */
+        foreach ($allProducts as $product) {
+            if (!in_array($product->getProductLink(), $this->productLinks)) {
+                $this->productLinks[] = $product->getProductLink();
+            }
+        }
     }
 }

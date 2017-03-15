@@ -18,14 +18,13 @@
                         Категория
                     </div>
                     <div class="catalogMenu">
-                        {% for productLink in productLinks %}
-                            {% if loop.first %}
-                            {#{% if app.request.query.get("productLinkFilter") == productLink.id %}#}
-                                <span class="currentCatalog collapsed">{{ productLink }}</span>
-                                <ul>
-                            {% else %}
-                                <li><a href="/catalog?productLinkFilter={{ productLink.id }}">{{ productLink }}</a></li>
-                            {% endif %}
+                        <span class="currentCatalog collapsed">{{ actualProductLink.title }}</span>
+                        <ul>
+                            {% for productLink in productLinks %}
+                                {#{% if loop.first %}#}
+                                {% if actualProductLink.id != productLink.id %}
+                                    <li><a href="/catalog?productLinkFilter={{ productLink.id }}">{{ productLink }}</a></li>
+                                {% endif %}
                         {% endfor %}
                         </ul>
                     </div>
@@ -41,11 +40,11 @@
                         <div class="catalogFilter">
                             <ul>
                                 <li {% if app.request.query.get("categoryFilter") is empty %}class="act" {% endif %}>
-                                    <a href="/catalog">Все</a>
+                                    <a href="/catalog?productLinkFilter={{ actualProductLink.id }}">Все</a>
                                 </li>
                                 {% for productCategory in productCategories %}
                                     <li {% if app.request.query.get("categoryFilter") == productCategory.id %}class="act" {% endif %}>
-                                        <a href="/catalog?categoryFilter={{ productCategory.id }}">{{ productCategory }}</a>
+                                        <a href="/catalog?categoryFilter={{ productCategory.id }}&productLinkFilter={{ actualProductLink.id }}">{{ productCategory }}</a>
                                     </li>
                                 {% endfor %}
                             </ul>
@@ -64,16 +63,18 @@
                             {#</div>#}
                             <div class="catalogList">
                                 {% for product in products %}
-                                    <div class="catalogItem">
-                                        <a href="/catalog/item/{{ product.alias }}" class="catalogItemBody">
-                                            <span class="catalogItemImage">
-                                                <img src="{% path product.productMedia.0.media, 'big' %}" alt="/" >
-                                            </span>
-                                            <span class="catalogItemTitle">{{ product.title }}</span>
-                                            {#<span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста для большей конверсии продукции.</span>#}
-                                        </a>
-                                        <a href="/catalog/item/{{ product.alias }}" class="catalogItemLink bold">Подробнее...</a>
-                                    </div>
+                                    {% if product.category.id == actualCategoryId or actualCategoryId is null %}
+                                        <div class="catalogItem">
+                                            <a href="/catalog/item/{{ product.alias }}" class="catalogItemBody">
+                                                <span class="catalogItemImage">
+                                                    <img src="{% path product.productMedia.0.media, 'big' %}" alt="/" >
+                                                </span>
+                                                <span class="catalogItemTitle">{{ product.title }}</span>
+                                                {#<span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста для большей конверсии продукции.</span>#}
+                                            </a>
+                                            <a href="/catalog/item/{{ product.alias }}" class="catalogItemLink bold">Подробнее...</a>
+                                        </div>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                             {#<div class="paginator">#}

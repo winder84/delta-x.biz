@@ -18,15 +18,13 @@
                         Категория
                     </div>
                     <div class="catalogMenu">
-                        {% for productLink in productLinks %}
-                        {% if loop.first %}
-                        {#{% if app.request.query.get("productLinkFilter") == productLink.id %}#}
-                        <span class="currentCatalog collapsed">{{ productLink }}</span>
+                        <span class="currentCatalog collapsed">{{ actualProductLink }}</span>
                         <ul>
-                            {% else %}
+                        {% for productLink in productLinks %}
+                            {% if actualProductLink.id != productLink.id %}
                                 <li><a href="/catalog?productLinkFilter={{ productLink.id }}">{{ productLink }}</a></li>
                             {% endif %}
-                            {% endfor %}
+                        {% endfor %}
                         </ul>
                     </div>
                     <div class="searchContainer">
@@ -42,7 +40,7 @@
                             <ul>
                                 {% for category in productCategories %}
                                     <li {% if category == productCategory %}class="act" {% endif %}>
-                                        <a href="/catalog?categoryFilter={{ category.id }}">{{ category }}</a>
+                                        <a href="/catalog?categoryFilter={{ category.id }}&productLinkFilter={{ actualProductLink.id }}">{{ category }}</a>
                                     </li>
                                 {% endfor %}
                             </ul>
@@ -113,7 +111,7 @@
                                 <div class="catalogDescrBody">
                                     <span class="catalogDescrTitle">{{ productItem.title }}</span>
                                     <p>
-                                        {{ productItem.text }}
+                                        {{ productItem.text|raw }}
                                     </p>
                                 </div>
                             </div>
