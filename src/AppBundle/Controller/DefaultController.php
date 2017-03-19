@@ -157,6 +157,23 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/about", name="about")
+     */
+    public function aboutAction(Request $request)
+    {
+        $this->getMenuItems();
+        $em = $this->getDoctrine()->getManager();
+        $rewards = $em
+            ->getRepository('AppBundle:Rewards')
+            ->findBy(array(), array('id' => 'DESC'));
+        return $this->render('AppBundle:default:about.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
+            'productLinks' => $this->productLinks,
+            'rewards' => $rewards,
+        ]);
+    }
+
+    /**
      * @Route("/sendMail", name="send_mail")
      */
     public function sendMailAction(Request $request)
