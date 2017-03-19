@@ -174,12 +174,24 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/contacts", name="contacts")
+     */
+    public function contactsAction(Request $request)
+    {
+        $this->getMenuItems();
+        return $this->render('AppBundle:default:contacts.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
+            'productLinks' => $this->productLinks,
+        ]);
+    }
+
+    /**
      * @Route("/sendMail", name="send_mail")
      */
     public function sendMailAction(Request $request)
     {
-        $to      = 'admin@delta-x.ru';
-//        $to      = 'winder84@mail.ru';
+//        $to      = 'admin@delta-x.ru';
+        $to      = 'winder84@mail.ru';
         $subject = 'Письмо с сайта delta-x.biz';
         $message = $request->get('name') . "\r\n" . $request->get('email') . "\r\n\r\n" . $request->get('theme') . "\r\n\r\n" . $request->get('message');
         $headers = 'From: webmaster@delta-x.biz' . "\r\n" .

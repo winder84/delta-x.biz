@@ -1,0 +1,165 @@
+{% extends 'AppBundle:default:layout.html.twig' %}
+
+{% block body %}
+    <div class="innerPageBlock clearfix">
+        <div class="breadCrumbs clearfix">
+            <div class="breadCrumbsBlock clearfixk">
+                <ul>
+                    <li class="home"><a href="/"></a></li>
+                    <li><span>Контакты</span></li>
+                </ul>
+            </div>
+        </div>
+        <section class="baseContent clearfix">
+            <div class="baseContentBlock clearfix">
+                <div class="searchBlock clearfix">
+                    <div class="pageNameBlock">
+                        Контакты
+                    </div>
+                    {#<div class="searchContainer">#}
+                    {#<form action="/">#}
+                    {#<input class="searchBtn" type="submit" value="">#}
+                    {#<input class="searchInput" type="text" placeholder="поиск...">#}
+                    {#</form>#}
+                    {#</div>#}
+                </div>
+                <div class="contentBlock">
+                    <div class="encyclopediaWidget">
+                        <div class="aboutBlock">
+                            <div class="inlineBlock" style="margin-right: 150px;">
+                                <h3>ООО "Дельта-X"</h3>
+                                производитель фарфора ручной работы
+                                <br />
+                                <br />
+                                <span class="fontBold">Адрес:</span>
+                                <br />
+                                ул.Гайдара, 32
+                                <br />
+                                Кисловодск
+                                <br />
+                                Ставропольский край
+                                <br />
+                                <span class="colorBlue">357700</span>
+                                <br />
+                                Российская Федерация
+                                <br />
+                                <br />
+                                Телефон: <span class="colorBlue">(87937)6-79-36, 6-65-36</span>
+                                <br />
+                                Факс: <span class="colorBlue">(87937)6-79-36</span>
+                                <br />
+                                <a href="//delta-x.biz"><span class="colorBlue">www.delta-x.biz</span></a>
+                                <br />
+                                <a href="//delta-x.ru"><span class="colorBlue">www.delta-x.ru</span></a>
+                                <br />
+                                <br />
+                                <span class="fontBold">График работы:</span>
+                                <br />
+                                <span class="fontBold colorBlue">ПН-ПТ с 9:00 до 17:00</span>
+                                <br />
+                                <span class="fontBold colorBlue">СБ-ВС с 9:00 до 16:00</span>
+                                <br />
+                                (без перерыва)
+                            </div>
+                            <div class="inlineBlock">
+                                <form class="feedbackForm" action="/sendMail">
+                                    <span class="titleForm">Вы можете написать нам:</span>
+                                    <br />
+                                    <br />
+                                    <table class="feedbackFormTable">
+                                        <tr>
+                                            <td>
+                                                <label>Введите Ваше имя:</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="name" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label>E-mail адрес:</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="email" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label>Тема сообщения:</label>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="theme" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label>Текст Вашего сообщения:</label>
+                                            </td>
+                                            <td>
+                                                <textarea name="message"></textarea>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <input style="color: black; float: right;" type="submit" value="Отправить" />
+                                </form>
+                            </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <style>
+        .aboutBlock {
+            padding: 50px 0 50px 100px;
+            background: white;
+        }
+
+        .aboutBlock h3 {
+            font-weight: bold;
+            font-size: 18px;
+            color: #4354a0;
+        }
+
+        .colorBlue {
+            color: #4354a0;
+        }
+
+        .fontBold {
+            font-weight: bold;
+        }
+
+        .inlineBlock {
+            display: inline-block;
+            margin: 0 20px 0 20px;
+            vertical-align: top;
+        }
+
+        .feedbackForm .titleForm {
+            font-weight: bold;
+            font-size: 18px;
+            color: #4354a0;
+        }
+
+        .feedbackForm .inputBlock {
+            margin: 10px 0 0 0;
+        }
+
+        .feedbackFormTable td {
+            padding: 5px 10px;
+            vertical-align: top;
+        }
+
+        .feedbackFormTable input {
+            width: 300px;
+        }
+
+        .feedbackFormTable textarea {
+            resize: none;
+            width: 300px;
+            height: 180px;
+        }
+    </style>
+
+    <div class="pusher"></div>
+{% endblock %}
