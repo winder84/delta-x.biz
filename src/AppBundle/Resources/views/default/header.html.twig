@@ -31,10 +31,10 @@
             </a>
         </div>
         <ul>
-            <li class="act">
+            <li class="{% if app.request.attributes.get('_route') == 'homepage' %} act{% endif %}">
                 <a href="/">Главная</a>
             </li>
-            <li class="subItemMenu">
+            <li class="subItemMenu{% if app.request.attributes.get('_route') == 'catalog' %} act{% endif %}">
                 <a href="/catalog" class="actSubItem expanded">Каталог продукции</a>
                 <ul class="submenu">
                     {% for productLink in productLinks %}
@@ -44,16 +44,16 @@
                     {% endfor %}
                 </ul>
             </li>
-            <li>
+            <li class="{% if app.request.attributes.get('_route') == 'about' %} act{% endif %}">
                 <a href="/about">О нас</a>
             </li>
             {#<li>#}
                 {#<a href="/">Способы оплаты</a>#}
             {#</li>#}
-            <li>
+            <li class="{% if app.request.attributes.get('_route') == 'encyclopedia' %} act{% endif %}">
                 <a href="/encyclopedia">Энциклопедия</a>
             </li>
-            <li>
+            <li class="{% if app.request.attributes.get('_route') == 'contacts' %} act{% endif %}">
                 <a href="/contacts">Контакты</a>
             </li>
         </ul>
