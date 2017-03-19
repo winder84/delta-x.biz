@@ -190,8 +190,8 @@ class DefaultController extends Controller
      */
     public function sendMailAction(Request $request)
     {
-//        $to      = 'admin@delta-x.ru';
-        $to      = 'winder84@mail.ru';
+        $to      = 'admin@delta-x.ru';
+//        $to      = 'winder84@mail.ru';
         $subject = 'Письмо с сайта delta-x.biz';
         $message = $request->get('name') . "\r\n" . $request->get('email') . "\r\n\r\n" . $request->get('theme') . "\r\n\r\n" . $request->get('message');
         $headers = 'From: webmaster@delta-x.biz' . "\r\n" .
