@@ -82,6 +82,7 @@ class DefaultController extends Controller
             'productLinks' => $this->productLinks,
             'actualProductLink' => $actualProductLink,
             'actualCategoryId' => $categoryFilter,
+            'pageTitle' => 'Каталог - ' . $actualProductLink->getTitle(),
         ]);
     }
 
@@ -99,6 +100,7 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
             'productLinks' => $this->productLinks,
             'articles' => $articles,
+            'pageTitle' => 'Энциклопедия',
         ]);
     }
 
@@ -118,6 +120,7 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
             'productLinks' => $this->productLinks,
             'article' => $article,
+            'pageTitle' => $article->getTitle(),
         ]);
     }
 
@@ -153,6 +156,7 @@ class DefaultController extends Controller
             'productCategory' => $productCategory,
             'productLinks' => $this->productLinks,
             'actualProductLink' => $actualProductLink,
+            'pageTitle' => $productItem->getTitle(),
         ]);
     }
 
@@ -170,6 +174,7 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
             'productLinks' => $this->productLinks,
             'rewards' => $rewards,
+            'pageTitle' => 'О нас',
         ]);
     }
 
@@ -182,6 +187,7 @@ class DefaultController extends Controller
         return $this->render('AppBundle:default:contacts.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
             'productLinks' => $this->productLinks,
+            'pageTitle' => 'Контакты',
         ]);
     }
 
