@@ -142,14 +142,14 @@
                                         {% for likeProduct in likeProducts %}
                                             {% if loop.index0 < 3 %}
                                                 <div class="catalogItem">
-                                                    <a href="#" class="catalogItemBody">
+                                                    <a href="/catalog/item/{{ likeProduct.alias }}" class="catalogItemBody">
                                                     <span class="catalogItemImage">
                                                         <img src="{% path likeProduct.productMedia.0.media, 'big' %}" alt="/" >
                                                     </span>
                                                         <span class="catalogItemTitle">{{ likeProduct.title }}</span></span>
                                                         {#<span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста для большей конверсии продукции.</span>#}
                                                     </a>
-                                                    <a href="#" class="catalogItemLink bold">Подробнее...</a>
+                                                    <a href="/catalog/item/{{ likeProduct.alias }}" class="catalogItemLink bold">Подробнее...</a>
                                                 </div>
                                             {% endif %}
                                         {% endfor %}
