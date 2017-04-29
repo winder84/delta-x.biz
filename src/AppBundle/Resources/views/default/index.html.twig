@@ -186,7 +186,7 @@
             <div class="contactsForm">
                 <a class="vk" href="https://vk.com" target="_blank" rel="nofollow"><img src="{{ asset('bundles/app/images/vk_icon.svg') }}" alt="" /><span>Наш паблик</span></a>
                 <div class="formFeedback">
-                    <form action="/sendMail">
+                    <form action="#" method="post">
                         <span class="titleForm">Вы можете написать нам:</span>
                         <div class="inputBlock">
                             <label>Введите Ваше имя:</label>
@@ -204,7 +204,7 @@
                             <label>Текст Вашего сообщения:</label>
                             <textarea name="message"></textarea>
                         </div>
-                        <input style="color: black;" type="submit" value="Отправить" />
+                        <input style="color: black;" type="submit" id="feedbackSubmit" value="Отправить" />
                     </form>
                 </div>
             </div>
@@ -266,6 +266,20 @@
                         link = '';     }
 
                 }
+		$('#feedbackSubmit').on('mouseover', function() {
+		    $(this).parents('form').prop('action', '/sendMail');
+		});
+		$('#feedbackSubmit').on('mouseleave', function() {
+		    $(this).parents('form').prop('action', '#');
+		})
+		$(document).ready(function() {
+		  $(window).keydown(function(event){
+		    if(event.keyCode == 13) {
+		      event.preventDefault();
+		      return false;
+		    }
+		  });
+		});
             </script>
             <style>
                 #map {

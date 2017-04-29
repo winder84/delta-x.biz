@@ -67,5 +67,7 @@ security:
         - { path: ^/admin/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
         - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
+        - { path: ^/foo, roles: IS_AUTHENTICATED_ANONYMOUSLY, ips: [127.0.0.1, ::1] }
+        - { path: ^/foo, roles: ROLE_NO_ACCESS }
     encoders:
             FOS\UserBundle\Model\UserInterface: sha512
