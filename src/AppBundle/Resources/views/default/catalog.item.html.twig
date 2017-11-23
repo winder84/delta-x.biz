@@ -34,7 +34,7 @@
                         {#</form>#}
                     </div>
                 </div>
-                <div class="contentBlock">
+                <div class="contentBlock catalogPage">
                     <div class="catalogBlock">
                         <div class="catalogFilter">
                             <ul>
@@ -141,15 +141,17 @@
                                     <div class="catalogListAdd">
                                         {% for likeProduct in likeProducts %}
                                             {% if loop.index0 < 3 %}
-                                                <div class="catalogItem">
-                                                    <a href="/catalog/item/{{ likeProduct.alias }}" class="catalogItemBody">
-                                                    <span class="catalogItemImage">
-                                                        <img src="{% path likeProduct.productMedia.0.media, 'big' %}" alt="/" >
-                                                    </span>
-                                                        <span class="catalogItemTitle">{{ likeProduct.title }}</span></span>
-                                                        {#<span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста для большей конверсии продукции.</span>#}
-                                                    </a>
-                                                    <a href="/catalog/item/{{ likeProduct.alias }}" class="catalogItemLink bold">Подробнее...</a>
+                                                <div class="catalogItemBlock">
+                                                    <div class="catalogItem">
+                                                        <a href="/catalog/item/{{ likeProduct.alias }}" class="catalogItemBody">
+                                                        <span class="catalogItemImage">
+                                                            <img src="{% path likeProduct.productMedia.0.media, 'big' %}" alt="/" >
+                                                        </span>
+                                                            <span class="catalogItemTitle">{{ likeProduct.title }}</span></span>
+                                                            {#<span class="catalogItemDesc">Небольное описание сервиза, материалов и прочего. Немного текста для большей конверсии продукции.</span>#}
+                                                        </a>
+                                                        <a href="/catalog/item/{{ likeProduct.alias }}" class="catalogItemLink bold">Подробнее...</a>
+                                                    </div>
                                                 </div>
                                             {% endif %}
                                         {% endfor %}

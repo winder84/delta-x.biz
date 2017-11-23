@@ -285,7 +285,17 @@
             <style>
                 #map {
                     height:488px;
-                    width:100%px;
+                    width:100%;
+                }
+                @media (max-width: 1024px) {
+                    #map {
+                        height: 300px;
+                    }
+                }
+                @media (max-width: 480px) {
+                    #map {
+                        height: 200px;
+                    }
                 }
                 .gm-style-iw * {
                     display: block;

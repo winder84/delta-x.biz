@@ -8,6 +8,17 @@ $(document).ready(function() {
         else $wrapper.removeClass('fixedMenu');
     });
 
+    $('#showMobileMenu').on('click', function() {
+        var $menu = $(this).closest('.mobileFixed').find('.mobileMenuBlock');
+        if ($menu.hasClass('expanded')) {
+            $menu.slideDown(100);
+        } else {
+            $menu.slideUp(100);
+        }
+        $menu.toggleClass('expanded');
+        return false;
+    });
+
     $('.catalogMenu').find('.currentCatalog').on('click', function() {
         var $submenu = $(this).parent().find('ul');
 
@@ -20,20 +31,39 @@ $(document).ready(function() {
         }
     });
 
-    $('.actSubItem').on('mouseover', function() {
-        var $submenu = $(this).parent().find('.submenu');
-        $submenu.slideDown(100);
-        $(this).removeClass('expanded');
-        $(this).addClass('collapsed');
-
+    $('.actSubItem').on('mouseenter', function() {
+        if (window.innerWidth > 1025) {
+            var $submenu = $(this).parent().find('.submenu');
+            $submenu.slideDown(100);
+            $(this).removeClass('collapsed');
+            $(this).addClass('expanded');
+        }
         return false;
     });
 
+    $('.actSubItem').on('click', function() {
+        if (window.innerWidth < 1025) {
+            var $submenu = $(this).parent().find('.submenu');
+            if ($submenu.is(':visible')) {
+                $submenu.slideUp(100);
+                $(this).toggleClass('collapsed expanded');
+            } else {
+                $submenu.slideDown(100);
+                $(this).toggleClass('collapsed expanded');
+            }
+            return false;
+        }
+        return true;
+    });
+
+
     $('.actSubItem').parent('.subItemMenu').on('mouseleave', function() {
-        var $submenu = $(this).parent().find('.submenu');
-        $submenu.slideUp(100);
-        $(this).find('.actSubItem').removeClass('collapsed');
-        $(this).find('.actSubItem').addClass('expanded');
+        if (window.innerWidth > 1025) {
+            var $submenu = $(this).parent().find('.submenu');
+            $submenu.slideUp(100);
+            $(this).find('.actSubItem').removeClass('expanded');
+            $(this).find('.actSubItem').addClass('collapsed');
+        }
 
         return false;
     });

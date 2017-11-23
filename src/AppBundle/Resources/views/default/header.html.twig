@@ -17,11 +17,55 @@
             </a>
         </div>
         <div class="phonesBlock">
-            <span class="phoneTitle">Наши телефоны:</span>
-            <span class="bold">8(87937) 6 79 36</span>
-            <span class="bold">8(87937) 6 65 36</span>
-            <span class="phoneTitle">Email:</span>
-            <span class="bold"><a href="mailto:admin@delta-x.ru">admin@delta-x.ru</a></span>
+            <div>
+                <span class="phoneTitle">Наши телефоны:</span>
+                <span class="bold">8(87937) 6 79 36</span>
+                <span class="bold">8(87937) 6 65 36</span>
+            </div>
+            <div>
+                <span class="phoneTitle">Email:</span>
+                <span class="bold"><a href="mailto:admin@delta-x.ru">admin@delta-x.ru</a></span>
+            </div>
+        </div>
+    </div>
+    <div class="mobileFixed">
+        <div class="mobileMenuIcon">
+            <a id="showMobileMenu" href="#"><img src="{{ asset('bundles/app/images/mobile_menu.png') }}" /></a>
+        </div>
+        <div class="mobileMenuBlock expanded">
+            <ul class="mobileMenu">
+                <li class="{% if app.request.attributes.get('_route') == 'homepage' %} act{% endif %}">
+                    <a href="/">Главная</a>
+                </li>
+                <li class="subItemMenu{% if app.request.attributes.get('_route') == 'catalog' %} act{% endif %}">
+                    <a href="/catalog" class="actSubItem expanded">Каталог продукции</a>
+                    <ul class="submenu">
+                        {% for productLink in productLinks %}
+                            <li>
+                                <a href="/catalog?productLinkFilter={{ productLink.id }}">{{ productLink }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="{% if app.request.attributes.get('_route') == 'about' %} act{% endif %}">
+                    <a href="/about">О нас</a>
+                </li>
+                {#<li>#}
+                    {#<a href="/">Способы оплаты</a>#}
+                {#</li>#}
+                <li class="{% if app.request.attributes.get('_route') == 'encyclopedia' %} act{% endif %}">
+                    <a href="/encyclopedia">Энциклопедия</a>
+                </li>
+                <li class="{% if app.request.attributes.get('_route') == 'contacts' %} act{% endif %}">
+                    <a href="/contacts">Контакты</a>
+                </li>
+            </ul>
+        </div>
+        <img class="mobileLogo" src="{{ asset('bundles/app/images/logo.svg') }}" alt="Логотип" />
+        <div class="mobileChooseLocale">
+            <a href="/">
+                <img src="{{ asset('bundles/app/images/rus_img.svg') }}" alt="" />
+            </a>
         </div>
     </div>
     <div class="menuBlock clearfix">
@@ -35,7 +79,7 @@
                 <a href="/">Главная</a>
             </li>
             <li class="subItemMenu{% if app.request.attributes.get('_route') == 'catalog' %} act{% endif %}">
-                <a href="/catalog" class="actSubItem expanded">Каталог продукции</a>
+                <a href="/catalog" class="actSubItem collapsed">Каталог продукции</a>
                 <ul class="submenu">
                     {% for productLink in productLinks %}
                         <li>
