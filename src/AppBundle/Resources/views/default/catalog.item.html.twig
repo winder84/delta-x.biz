@@ -91,7 +91,9 @@
                                                         <p style="position: absolute; font: 20px bold; margin: 20px 0 0 50px; color: black;">
                                                             {{ imgIndex }}
                                                         </p>
-                                                        <img style="height: 690px; max-width: 850px; margin: 0 auto;" src="{% path productMedia.media, 'prod' %}" alt ="" />
+                                                        <a href="{% path productMedia.media, 'prod' %}" class="lightzoom">
+                                                            <img style="height: 690px; max-width: 850px; margin: 0 auto;" src="{% path productMedia.media, 'prod' %}" alt ="" />
+                                                        </a>
                                                     </li>
                                                 {% endif %}
                                             {% endfor %}
@@ -107,9 +109,7 @@
                                                         <p style="position: absolute; margin: 10px 0 0 20px; color: black;">
                                                             {{ imgIndex }}
                                                         </p>
-                                                        <a href="{% path productMedia.media, 'prodPrev' %}" class="lightzoom">
-                                                            <img src="{% path productMedia.media, 'prodPrev' %}" alt ="" />
-                                                        </a>
+                                                        <img src="{% path productMedia.media, 'prodPrev' %}" alt ="" />
                                                     </li>
                                                 {% endif %}
                                             {% endfor %}
