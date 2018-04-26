@@ -107,7 +107,9 @@
                                                         <p style="position: absolute; margin: 10px 0 0 20px; color: black;">
                                                             {{ imgIndex }}
                                                         </p>
-                                                        <img src="{% path productMedia.media, 'prodPrev' %}" alt ="" />
+                                                        <a href="{% path productMedia.media, 'prodPrev' %}" class="lightzoom">
+                                                            <img src="{% path productMedia.media, 'prodPrev' %}" alt ="" />
+                                                        </a>
                                                     </li>
                                                 {% endif %}
                                             {% endfor %}

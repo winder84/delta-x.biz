@@ -84,4 +84,11 @@ $(document).ready(function() {
     $('.flexslider').flexslider({
         animation: "slide"
     }).show();
+
+    $('.lightzoom').lightzoom({
+        speed: 400,
+        isOverlayClickClosing: true,
+        isEscClosing: true,
+        viewTitle: true
+    });
 });
