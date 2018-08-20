@@ -201,8 +201,8 @@ class DefaultController extends Controller
         $theme = $request->get('theme');
         $message = $request->get('message');
         if ($name && $email) {
-//            $to      = 'admin@delta-x.ru';
-            $to      = 'winder84@mail.ru';
+            $to      = 'admin@delta-x.ru';
+//            $to      = 'winder84@mail.ru';
             $subject = 'Письмо с сайта delta-x.biz';
             $message = $name . "\r\n" . $email . "\r\n\r\n" . $theme . "\r\n\r\n" . $message;
             $headers = 'From: webmaster@delta-x.biz' . "\r\n" .
