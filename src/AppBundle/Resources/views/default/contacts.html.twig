@@ -65,46 +65,54 @@
                                 (без перерыва)
                             </div>
                             <div class="aboutBlockForm inlineBlock">
-                                <form class="feedbackForm" action="/sendMail">
-                                    <span class="titleForm">Вы можете написать нам:</span>
-                                    <br />
-                                    <br />
-                                    <table class="feedbackFormTable">
-                                        <tr>
-                                            <td>
-                                                <label>Введите Ваше имя:</label>
-                                            </td>
-                                            <td>
-                                                <input type="text" name="name" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>E-mail адрес:</label>
-                                            </td>
-                                            <td>
-                                                <input type="text" name="email" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>Тема сообщения:</label>
-                                            </td>
-                                            <td>
-                                                <input type="text" name="theme" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>Текст Вашего сообщения:</label>
-                                            </td>
-                                            <td>
-                                                <textarea name="message"></textarea>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <input style="color: black; float: right;" type="submit" value="Отправить" />
-                                </form>
+                                {% if app.session.flashbag.peekAll|length > 0 %}
+                                    {% for flash_message in app.session.flashBag.get('notice') %}
+                                        <div style="color: #00a65a; font-size: 1rem; font-weight: bold;">
+                                            {{ flash_message }}
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <form class="feedbackForm" action="/sendMail">
+                                        <span class="titleForm">Вы можете написать нам:</span>
+                                        <br />
+                                        <br />
+                                        <table class="feedbackFormTable">
+                                            <tr>
+                                                <td>
+                                                    <label>Введите Ваше имя:</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="name" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label>E-mail адрес:</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="email" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label>Тема сообщения:</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="theme" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label>Текст Вашего сообщения:</label>
+                                                </td>
+                                                <td>
+                                                    <textarea name="message"></textarea>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <input style="color: black; float: right;" type="submit" value="Отправить" />
+                                    </form>
+                                {% endif %}
                             </div>
                     </div>
                     </div>
