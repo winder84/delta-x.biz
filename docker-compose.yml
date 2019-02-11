@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+
+  app:
+    container_name: sf.app
+    build: docker/php-fpm
+    environment:
+      TIMEZONE: Europe/Moscow
+    volumes:
+      - .:/app
+      - ./var/logs:/app/var/logs
+      - ./var/cache:/app/var/cache
+      - ./var/sessions:/app/var/sessions
+    working_dir: /app
+
+  nginx:
+    container_name: sf.nginx
+    build: docker/nginx
+    volumes_from:
+      - app
+    ports:
+      - 8080:80
