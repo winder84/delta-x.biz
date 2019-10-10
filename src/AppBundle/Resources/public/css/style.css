@@ -2270,7 +2270,8 @@ html {
 }
 
 .catalogBlock .catalogFilter {
-  margin-left: 37px
+  margin-left: 37px;
+  max-width: calc(100% - 37px);
 }
 
 @media (max-width:1024px) {
