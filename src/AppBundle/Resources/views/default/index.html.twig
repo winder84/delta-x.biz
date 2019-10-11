@@ -185,135 +185,14 @@
                 </p>
             </div>
             <div class="contactsForm">
-                <a class="vk" href="https://vk.com" target="_blank" rel="nofollow"><img src="{{ asset('bundles/app/images/vk_icon.svg') }}" alt="" /><span>Наш паблик</span></a>
+                <a class="vk" href="https://vk.com/delta_x_porcelain" target="_blank" rel="nofollow"><img src="{{ asset('bundles/app/images/vk_icon.svg') }}" alt="" /><span>Наш паблик</span></a>
                 <br />
                 <img src="bundles/app/images/instagram.png" width="35" style="display: inline-block; vertical-align: middle; margin: 5px 0 0 12px;">
                 <a class="vk" href="https://www.instagram.com/delta_x.ru/" target="_blank" rel="nofollow" style="display: inline-block;"><span>Наш Instagram</span></a>
-                <div class="formFeedback">
-                    <form action="#" method="post">
-                        <span class="titleForm">Вы можете написать нам:</span>
-                        <div class="inputBlock">
-                            <label>Введите Ваше имя:</label>
-                            <input type="text" name="name" />
-                        </div>
-                        <div class="inputBlock">
-                            <label>E-mail адрес:</label>
-                            <input type="text" name="email" />
-                        </div>
-                        <div class="inputBlock">
-                            <label>Тема сообщения:</label>
-                            <input type="text" name="theme" />
-                        </div>
-                        <div class="inputBlock textareaBlock">
-                            <label>Текст Вашего сообщения:</label>
-                            <textarea name="message"></textarea>
-                        </div>
-                        <input style="color: black;" type="submit" id="feedbackSubmit" value="Отправить" />
-                    </form>
-                </div>
+                <br />
+                <img src="bundles/app/images/master_factory.jpg" width="35" style="display: inline-block; vertical-align: middle; margin: 5px 0 0 12px;">
+                <a class="vk" href="https://www.livemaster.ru/delta-x" target="_blank" rel="nofollow" style="display: inline-block;"><span>Ярмарка мастеров</span></a>
             </div>
-        </div>
-    </section>
-    <!-- Карта -->
-    <section class="map clearfix">
-        <div class="mapBlock">
-            <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAAO66PSXVFEKBaHdlGYnOyPpZHAcwOGGI&sensor=false&extension=.js'></script>
-            <script>
-                google.maps.event.addDomListener(window, 'load', init);
-                var map;
-                function init() {
-                    var mapOptions = {
-                        center: new google.maps.LatLng(43.911269,42.737364),
-                        zoom: 17,
-                        zoomControl: true,
-                        zoomControlOptions: {
-                            style: google.maps.ZoomControlStyle.DEFAULT,
-                        },
-                        disableDoubleClickZoom: true,
-                        mapTypeControl: true,
-                        mapTypeControlOptions: {
-                            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-                        },
-                        scaleControl: true,
-                        scrollwheel: false,
-                        panControl: true,
-                        streetViewControl: true,
-                        draggable : true,
-                        overviewMapControl: true,
-                        overviewMapControlOptions: {
-                            opened: false,
-                        },
-                        mapTypeId: google.maps.MapTypeId.ROADMAP,
-                        styles: [{"featureType":"all","elementType":"all","stylers":[{"saturation":-100},{"gamma":0.5}]}],
-                    }
-                    var mapElement = document.getElementById('map');
-                    var map = new google.maps.Map(mapElement, mapOptions);
-                    var locations = [
-                        ['ул. Гайдара, 32', 'ул. Гайдара, 32', 'undefined', 'undefined', 'undefined', 43.9109332, 42.7376888, '{{ asset('bundles/app/images/thumb.png') }}']
-                    ];
-                    for (i = 0; i < locations.length; i++) {
-                        if (locations[i][1] =='undefined'){ description ='';} else { description = locations[i][1];}
-                        if (locations[i][2] =='undefined'){ telephone ='';} else { telephone = locations[i][2];}
-                        if (locations[i][3] =='undefined'){ email ='';} else { email = locations[i][3];}
-                        if (locations[i][4] =='undefined'){ web ='';} else { web = locations[i][4];}
-                        if (locations[i][7] =='undefined'){ markericon ='';} else { markericon = locations[i][7];}
-                        marker = new google.maps.Marker({
-                            icon: markericon,
-                            position: new google.maps.LatLng(locations[i][5], locations[i][6]),
-                            map: map,
-                            title: locations[i][0],
-                            desc: description,
-                            tel: telephone,
-                            email: email,
-                            web: web
-                        });
-                        link = '';     }
-
-                }
-                $('#feedbackSubmit').on('mouseover', function() {
-                    $(this).parents('form').prop('action', '/sendMail');
-                });
-                $('#feedbackSubmit').on('mouseleave', function() {
-                    $(this).parents('form').prop('action', '#');
-                });
-                $(document).ready(function() {
-                  $(window).keydown(function(event){
-                    if(event.keyCode == 13) {
-                      event.preventDefault();
-                      return false;
-                    }
-                  });
-                });
-            </script>
-            <style>
-                #map {
-                    height:488px;
-                    width:100%;
-                }
-                @media (max-width: 1024px) {
-                    #map {
-                        height: 300px;
-                    }
-                }
-                @media (max-width: 480px) {
-                    #map {
-                        height: 200px;
-                    }
-                }
-                .gm-style-iw * {
-                    display: block;
-                    width: 100%;
-                }
-                .gm-style-iw h4, .gm-style-iw p {
-                    margin: 0;
-                    padding: 0;
-                }
-                .gm-style-iw a {
-                    color: #4272db;
-                }
-            </style>
-
-            <div id='map'></div>
         </div>
     </section>
 
