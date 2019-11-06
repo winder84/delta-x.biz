@@ -77,7 +77,7 @@
                                         </div>
                                     {% endfor %}
                                 {% else %}
-                                    <form class="feedbackForm" action="/sendMail">
+                                    <form id="feedbackForm" class="feedbackForm" action="/sendMail">
                                         <span class="titleForm">Вы можете написать нам:</span>
                                         <br />
                                         <br />
@@ -111,12 +111,30 @@
                                                     <label>Текст Вашего сообщения:</label>
                                                 </td>
                                                 <td>
-                                                    <textarea name="message"></textarea>
+                                                    <textarea name="message" id="message"></textarea>
                                                 </td>
                                             </tr>
                                         </table>
                                         <input style="color: black; float: right;" type="submit" value="Отправить" />
                                     </form>
+                                    <script>
+                                        var ct = 0;
+                                        var addCount = document.createElement('input');
+                                        addCount.type = "hidden";
+                                        addCount.id = "count";
+                                        addCount.name = "count";
+                                        addCount.value = "0";
+                                        document.getElementById('feedbackForm').appendChild(addCount);
+                                        $('#message').on('keyup', function () {
+                                            document.getElementById('count').value = ++ct;
+                                        });
+                                        $('#feedbackForm').on('submit', function (e) {
+                                            e.preventDefault();
+                                            if ($('#message').val() >= ct) {
+                                                $(this).submit();
+                                            }
+                                        })
+                                    </script>
                                 {% endif %}
                             </div>
                     </div>
