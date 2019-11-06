@@ -130,7 +130,7 @@
                                         });
                                         $('#feedbackForm').on('submit', function (e) {
                                             e.preventDefault();
-                                            if ($('#message').val() >= ct) {
+                                            if ($('#message').val().length >= ct) {
                                                 $(this).submit();
                                             }
                                         })
