@@ -130,8 +130,8 @@
                                         });
                                         $('#feedbackForm').on('submit', function (e) {
                                             e.preventDefault();
-                                            if ($('#message').val().length >= ct) {
-                                                $(this).submit();
+                                            if ($('#message').val().length <= ct) {
+                                                $('#feedbackForm').submit();
                                             }
                                         })
                                     </script>
