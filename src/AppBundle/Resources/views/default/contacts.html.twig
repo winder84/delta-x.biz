@@ -115,11 +115,12 @@
                                                 </td>
                                             </tr>
                                         </table>
-                                        <input style="color: black; float: right;" type="submit" value="Отправить" />
+                                        <input style="color: black; float: right;" type="submit" id="formSubmit" value="Отправить" />
                                     </form>
                                     <script>
                                         var ct = 0;
                                         var addCount = document.createElement('input');
+                                        var submitAccess = false;
                                         addCount.type = "hidden";
                                         addCount.id = "count";
                                         addCount.name = "count";
@@ -128,10 +129,14 @@
                                         $('#message').on('keyup', function () {
                                             document.getElementById('count').value = ++ct;
                                         });
-                                        $('#feedbackForm').on('submit', function (e) {
+                                        $('#formSubmit').on('click', function () {
                                             e.preventDefault();
-                                            if ($('#message').val().length <= ct) {
-                                                $('#feedbackForm').submit();
+                                            submitAccess = true;
+                                            $('#feedbackForm').submit();
+                                        });
+                                        $('#feedbackForm').on('submit', function (e) {
+                                            if (!submitAccess || ct <= 0 || $('#message').val().length > ct) {
+                                                e.preventDefault();
                                             }
                                         })
                                     </script>
