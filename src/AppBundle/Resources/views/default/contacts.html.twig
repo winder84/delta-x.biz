@@ -129,7 +129,7 @@
                                         $('#message').on('keyup', function () {
                                             document.getElementById('count').value = ++ct;
                                         });
-                                        $('#formSubmit').on('click', function () {
+                                        $('#formSubmit').on('click', function (e) {
                                             e.preventDefault();
                                             submitAccess = true;
                                             $('#feedbackForm').submit();
