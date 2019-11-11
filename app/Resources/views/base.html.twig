@@ -4,8 +4,8 @@
         <meta charset="UTF-8" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <title>Дельта-x | {% if pageTitle is defined %}{{ pageTitle }}{% else %}Кисловодский фарфор от производителя Дельта-x{% endif %}</title>
-        <meta name="keywords" lang="ru" content="Дельта-х">
+        <title>Кисловодский фарфор ручной работы Delta-X {% if pageTitle is defined %}| {{ pageTitle }}{% endif %}</title>
+        <meta name="keywords" lang="ru" content="Дельта-X, delta-x, дельта-икс">
         <meta name="description" content="Дельта-х | {% if pageTitle is defined %}{{ pageTitle }}{% else %}Производство  твердого авторского фарфора ручной работы от Кисловодской компании Дельта-х{% endif %}">
         <meta name="Document-state" content="Dynamic">
         <meta name="Resource-type" content="document">
@@ -23,6 +23,29 @@
             <script src="{{ asset('bundles/app/js/script.js') }}"></script>
             <script src="{{ asset('bundles/app/fancybox-3.0/dist/jquery.fancybox.min.js') }}"></script>
         {% endblock %}
+        <!-- Yandex.Metrika counter -->
+        <script type="text/javascript" >
+            (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+                m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+            ym(56177944, "init", {
+                clickmap:true,
+                trackLinks:true,
+                accurateTrackBounce:true
+            });
+        </script>
+        <noscript><div><img src="https://mc.yandex.ru/watch/56177944" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+        <!-- /Yandex.Metrika counter -->
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36999000-7"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-36999000-7');
+        </script>
     </head>
     <body>
         <div class="wrapper">
