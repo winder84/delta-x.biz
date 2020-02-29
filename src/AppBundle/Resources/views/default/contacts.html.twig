@@ -44,6 +44,8 @@
                                 Российская Федерация
                                 <br />
                                 <br />
+                            </div>
+                            <div class="aboutBlockForm inlineBlock">
                                 Телефон: <span class="colorBlue">8(87937)6-79-36, 6-65-36</span>
                                 <br />
                                 Факс: <span class="colorBlue">8(87937)6-79-36</span>
@@ -68,79 +70,77 @@
                                 <span class="fontBold colorBlue">СБ с 9:00 до 16:00</span>
                                 <br />
                                 (без перерыва)
-                            </div>
-                            <div class="aboutBlockForm inlineBlock">
-                                {% if app.session.flashbag.peekAll|length > 0 %}
-                                    {% for flash_message in app.session.flashBag.get('notice') %}
-                                        <div style="color: #00a65a; font-size: 1rem; font-weight: bold;">
-                                            {{ flash_message }}
-                                        </div>
-                                    {% endfor %}
-                                {% else %}
-                                    <form id="feedbackForm" class="feedbackForm" action="/sendMail">
-                                        <span class="titleForm">Вы можете написать нам:</span>
-                                        <br />
-                                        <br />
-                                        <table class="feedbackFormTable">
-                                            <tr>
-                                                <td>
-                                                    <label>Введите Ваше имя:</label>
-                                                </td>
-                                                <td>
-                                                    <input type="text" name="name" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>E-mail адрес:</label>
-                                                </td>
-                                                <td>
-                                                    <input type="text" name="email" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Тема сообщения:</label>
-                                                </td>
-                                                <td>
-                                                    <input type="text" name="theme" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Текст Вашего сообщения:</label>
-                                                </td>
-                                                <td>
-                                                    <textarea name="message" id="message"></textarea>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        <input style="color: black; float: right;" type="submit" id="formSubmit" value="Отправить" />
-                                    </form>
-                                    <script>
-                                        var ct = 0;
-                                        var addCount = document.createElement('input');
-                                        var submitAccess = false;
-                                        addCount.type = "hidden";
-                                        addCount.id = "count";
-                                        addCount.name = "count";
-                                        addCount.value = "0";
-                                        document.getElementById('feedbackForm').appendChild(addCount);
-                                        $('#message').on('keyup', function () {
-                                            document.getElementById('count').value = ++ct;
-                                        });
-                                        $('#formSubmit').on('click', function (e) {
-                                            e.preventDefault();
-                                            submitAccess = true;
-                                            $('#feedbackForm').submit();
-                                        });
-                                        $('#feedbackForm').on('submit', function (e) {
-                                            if (!submitAccess || ct <= 0 || $('#message').val().length > ct) {
-                                                e.preventDefault();
-                                            }
-                                        })
-                                    </script>
-                                {% endif %}
+{#                                {% if app.session.flashbag.peekAll|length > 0 %}#}
+{#                                    {% for flash_message in app.session.flashBag.get('notice') %}#}
+{#                                        <div style="color: #00a65a; font-size: 1rem; font-weight: bold;">#}
+{#                                            {{ flash_message }}#}
+{#                                        </div>#}
+{#                                    {% endfor %}#}
+{#                                {% else %}#}
+{#                                    <form id="feedbackForm" class="feedbackForm" action="/sendMail">#}
+{#                                        <span class="titleForm">Вы можете написать нам:</span>#}
+{#                                        <br />#}
+{#                                        <br />#}
+{#                                        <table class="feedbackFormTable">#}
+{#                                            <tr>#}
+{#                                                <td>#}
+{#                                                    <label>Введите Ваше имя:</label>#}
+{#                                                </td>#}
+{#                                                <td>#}
+{#                                                    <input type="text" name="name" />#}
+{#                                                </td>#}
+{#                                            </tr>#}
+{#                                            <tr>#}
+{#                                                <td>#}
+{#                                                    <label>E-mail адрес:</label>#}
+{#                                                </td>#}
+{#                                                <td>#}
+{#                                                    <input type="text" name="email" />#}
+{#                                                </td>#}
+{#                                            </tr>#}
+{#                                            <tr>#}
+{#                                                <td>#}
+{#                                                    <label>Тема сообщения:</label>#}
+{#                                                </td>#}
+{#                                                <td>#}
+{#                                                    <input type="text" name="theme" />#}
+{#                                                </td>#}
+{#                                            </tr>#}
+{#                                            <tr>#}
+{#                                                <td>#}
+{#                                                    <label>Текст Вашего сообщения:</label>#}
+{#                                                </td>#}
+{#                                                <td>#}
+{#                                                    <textarea name="message" id="message"></textarea>#}
+{#                                                </td>#}
+{#                                            </tr>#}
+{#                                        </table>#}
+{#                                        <input style="color: black; float: right;" type="submit" id="formSubmit" value="Отправить" />#}
+{#                                    </form>#}
+{#                                    <script>#}
+{#                                        var ct = 0;#}
+{#                                        var addCount = document.createElement('input');#}
+{#                                        var submitAccess = false;#}
+{#                                        addCount.type = "hidden";#}
+{#                                        addCount.id = "count";#}
+{#                                        addCount.name = "count";#}
+{#                                        addCount.value = "0";#}
+{#                                        document.getElementById('feedbackForm').appendChild(addCount);#}
+{#                                        $('#message').on('keyup', function () {#}
+{#                                            document.getElementById('count').value = ++ct;#}
+{#                                        });#}
+{#                                        $('#formSubmit').on('click', function (e) {#}
+{#                                            e.preventDefault();#}
+{#                                            submitAccess = true;#}
+{#                                            $('#feedbackForm').submit();#}
+{#                                        });#}
+{#                                        $('#feedbackForm').on('submit', function (e) {#}
+{#                                            if (!submitAccess || ct <= 0 || $('#message').val().length > ct) {#}
+{#                                                e.preventDefault();#}
+{#                                            }#}
+{#                                        })#}
+{#                                    </script>#}
+{#                                {% endif %}#}
                             </div>
                     </div>
                     </div>

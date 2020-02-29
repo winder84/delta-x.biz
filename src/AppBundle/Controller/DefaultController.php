@@ -191,30 +191,30 @@ class DefaultController extends Controller
         ]);
     }
 
-    /**
-     * @Route("/sendMail", name="send_mail")
-     */
-    public function sendMailAction(Request $request)
-    {
-        $name = $request->get('name');
-        $email = $request->get('email');
-        $theme = $request->get('theme');
-        $message = $request->get('message');
-        if ($name && $email) {
-            $to      = 'admin@delta-x.ru';
-//            $to      = 'winder84@mail.ru';
-            $subject = 'Письмо с сайта delta-x.biz';
-            $message = $name . "\r\n" . $email . "\r\n\r\n" . $theme . "\r\n\r\n" . $message;
-            $headers = 'From: webmaster@delta-x.biz' . "\r\n" .
-                'Reply-To: webmaster@delta-x.biz' . "\r\n" .
-                'X-Mailer: PHP/' . phpversion();
-
-            mail($to, $subject, $message, $headers);
-            $this->addFlash('notice', 'Ваше письмо отправлено. Спасибо за обращение!');
-        }
-
-        return $this->redirect('/contacts');
-    }
+//    /**
+//     * @Route("/sendMail", name="send_mail")
+//     */
+//    public function sendMailAction(Request $request)
+//    {
+//        $name = $request->get('name');
+//        $email = $request->get('email');
+//        $theme = $request->get('theme');
+//        $message = $request->get('message');
+//        if ($name && $email) {
+//            $to      = 'admin@delta-x.ru';
+////            $to      = 'winder84@mail.ru';
+//            $subject = 'Письмо с сайта delta-x.biz';
+//            $message = $name . "\r\n" . $email . "\r\n\r\n" . $theme . "\r\n\r\n" . $message;
+//            $headers = 'From: webmaster@delta-x.biz' . "\r\n" .
+//                'Reply-To: webmaster@delta-x.biz' . "\r\n" .
+//                'X-Mailer: PHP/' . phpversion();
+//
+//            mail($to, $subject, $message, $headers);
+//            $this->addFlash('notice', 'Ваше письмо отправлено. Спасибо за обращение!');
+//        }
+//
+//        return $this->redirect('/contacts');
+//    }
 
     private function getProductCategories($products)
     {
