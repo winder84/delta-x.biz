@@ -54,6 +54,7 @@ class ProductAdmin extends AbstractAdmin
         $formMapper
             ->add('title')
             ->add('text', 'ckeditor')
+            ->add('alias')
             ->add('category')
             ->add('productLink')
             ->add('productMedia', 'sonata_type_collection', array(
