@@ -20,17 +20,17 @@
                     <div class="catalogMenu">
                         <span class="currentCatalog collapsed">{{ actualProductLink }}</span>
                         <ul>
-                        {% for productLink in productLinks %}
-                            {% if actualProductLink.id != productLink.id %}
-                                <li><a href="/catalog?productLinkFilter={{ productLink.id }}">{{ productLink }}</a></li>
-                            {% endif %}
-                        {% endfor %}
+                            {% for productLink in productLinks %}
+                                {% if actualProductLink.id != productLink.id %}
+                                    <li><a href="/catalog?productLinkFilter={{ productLink.id }}">{{ productLink }}</a></li>
+                                {% endif %}
+                            {% endfor %}
                         </ul>
                     </div>
                     <div class="searchContainer">
                         {#<form action="/">#}
-                            {#<input class="searchBtn" type="submit" value="">#}
-                            {#<input class="searchInput" type="text" placeholder="поиск...">#}
+                        {#<input class="searchBtn" type="submit" value="">#}
+                        {#<input class="searchInput" type="text" placeholder="поиск...">#}
                         {#</form>#}
                     </div>
                 </div>
@@ -48,13 +48,13 @@
                         <div class="catalogListBlock">
                             <div class="paginator">
                                 {#<ul>#}
-                                    {#<li class="leftArrow"><a href="#"></a></li>#}
-                                    {#<li class="act"><a href="#">1</a></li>#}
-                                    {#<li><a href="#">2</a></li>#}
-                                    {#<li><a href="#">3</a></li>#}
-                                    {#<li><a href="#">4</a></li>#}
-                                    {#<li><a href="#">11</a></li>#}
-                                    {#<li class="rightArrow"><a href="#"></a></li>#}
+                                {#<li class="leftArrow"><a href="#"></a></li>#}
+                                {#<li class="act"><a href="#">1</a></li>#}
+                                {#<li><a href="#">2</a></li>#}
+                                {#<li><a href="#">3</a></li>#}
+                                {#<li><a href="#">4</a></li>#}
+                                {#<li><a href="#">11</a></li>#}
+                                {#<li class="rightArrow"><a href="#"></a></li>#}
                                 {#</ul>#}
                             </div>
                             <div class="catalogDescrItem">
@@ -89,10 +89,10 @@
                                                     {% set imgIndex = imgIndex + 1 %}
                                                     <li>
                                                         <p style="position: absolute; font: 20px bold; margin: 20px 0 0 50px; color: black;">
-                                                            {{ imgIndex }}
+                                                            {{ imgIndex }} {{ productMedia.media.description }} <br> {{ productMedia.media.copyright }}
                                                         </p>
                                                         <a href="{% path productMedia.media, 'prod' %}" data-fancybox="gallery">
-                                                            <img style="height: 690px; max-width: 850px; margin: 0 auto;" src="{% path productMedia.media, 'prod' %}" alt ="" />
+                                                            <img style="height: 690px; max-width: 850px; margin: 0 auto;" src="{% path productMedia.media, 'prod' %}" alt ="{{ productMedia.media.copyright }}" />
                                                         </a>
                                                     </li>
                                                 {% endif %}
@@ -124,15 +124,15 @@
                                 </div>
                             </div>
                             {#<div class="paginator">#}
-                                {#<ul>#}
-                                    {#<li class="leftArrow"><a href="#"></a></li>#}
-                                    {#<li class="act"><a href="#">1</a></li>#}
-                                    {#<li><a href="#">2</a></li>#}
-                                    {#<li><a href="#">3</a></li>#}
-                                    {#<li><a href="#">4</a></li>#}
-                                    {#<li><a href="#">11</a></li>#}
-                                    {#<li class="rightArrow"><a href="#"></a></li>#}
-                                {#</ul>#}
+                            {#<ul>#}
+                            {#<li class="leftArrow"><a href="#"></a></li>#}
+                            {#<li class="act"><a href="#">1</a></li>#}
+                            {#<li><a href="#">2</a></li>#}
+                            {#<li><a href="#">3</a></li>#}
+                            {#<li><a href="#">4</a></li>#}
+                            {#<li><a href="#">11</a></li>#}
+                            {#<li class="rightArrow"><a href="#"></a></li>#}
+                            {#</ul>#}
                             {#</div>#}
                             {% if likeProducts %}
                                 <div class="maybeBlock">
