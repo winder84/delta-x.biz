@@ -32,7 +32,7 @@
         "sonata-project/core-bundle": "^3.0",
         "sonata-project/intl-bundle": "^2.2",
         "sonata-project/formatter-bundle": "^3.2",
-        "twig/twig": "1.28.2"
+        "twig/twig": "1.38.0"
 
     },
     "require-dev": {
