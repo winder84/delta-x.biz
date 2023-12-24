@@ -88,7 +88,7 @@
                                                 {% if productMedia.media is not empty %}
                                                     {% set imgIndex = imgIndex + 1 %}
                                                     <li>
-                                                        <p style="position: absolute; font: 20px bold; margin: 20px 0 0 50px; color: black;">
+                                                        <p style="position: absolute;font-size: 12px;margin: 20px 0 0 50px;color: black;">
                                                             {{ imgIndex }} {{ productMedia.media.description }} <br> {{ productMedia.media.copyright }}
                                                         </p>
                                                         <a href="{% path productMedia.media, 'prod' %}" data-fancybox="gallery">
